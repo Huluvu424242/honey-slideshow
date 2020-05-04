@@ -16,7 +16,19 @@
 
 <h1>Beispiel zur Nutzung der honey-slideshow Komponente</h1>
 
-<honey-slideshow textids="seite" titletext="Seite vorlesen"></honey-slideshow>
+<honey-slideshow textids="seite" titletext="Seite vorlesen">
+  <!--
+  baseurl: URL zum Downloadverzeichnis in dem alle Slides und Texte der Präsentation abliegen
+  slideorder: Namen der Filenamen. Die Komponente ergänzt automatisch die Extension .md für die Folien und .txt für die Beschreibungstexte
+  -->
+  <script>
+    {
+      baseurl: https://funthomas424242.github.io/slideshow-portal/test/unittest/
+      slideorder: ["slide1", "slide2", "ende"]
+    }
+  </script>
+
+</honey-slideshow>
 
 <div id="slidewin"></div>
 

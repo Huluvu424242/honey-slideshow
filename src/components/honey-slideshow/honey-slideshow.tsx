@@ -3,12 +3,12 @@ import {Sprachausgabe} from "./speech-output"
 import {Logger} from "./log-helper";
 
 @Component({
-  tag: "honey-speech",
-  styleUrl: "honey-speech.css",
+  tag: "honey-slideshow",
+  styleUrl: "honey-slideshow.css",
   assetsDirs: ['assets'],
   shadow: true
 })
-export class HoneySpeech {
+export class HoneySlideshow {
 
   sprachAusgabe: Sprachausgabe;
 

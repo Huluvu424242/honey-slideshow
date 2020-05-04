@@ -1,20 +1,20 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-xdescribe('honey-speech', () => {
+xdescribe('honey-slideshow', () => {
   it('renders', async () => {
     const page = await newE2EPage();
 
-    await page.setContent('<honey-speech></honey-speech>');
-    const element = await page.find('honey-speech');
+    await page.setContent('<honey-slideshow></honey-slideshow>');
+    const element = await page.find('honey-slideshow');
     expect(element).toHaveClass('hydrated');
   });
 
   it('renders changes to the name data', async () => {
     const page = await newE2EPage();
 
-    await page.setContent('<honey-speech></honey-speech>');
-    const component = await page.find('honey-speech');
-    const element = await page.find('honey-speech >>> div');
+    await page.setContent('<honey-slideshow></honey-slideshow>');
+    const component = await page.find('honey-slideshow');
+    const element = await page.find('honey-slideshow >>> div');
     expect(element.textContent).toEqual(`Hello, World! I'm `);
 
     component.setProperty('first', 'James');

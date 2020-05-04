@@ -1,25 +1,25 @@
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/@huluvu424242/honey-speech)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/@huluvu424242/honey-slideshow)
 
-# honey-speech
+# honey-slideshow
 
 This component realize an speaker symbol button. Its can read a text of
 DOM elements referenced by an list of ids via voice.
 
 ## installation
 
-npm install --save honey-speech
+npm install --save honey-slideshow
 
 ## usage
 
 ```html
 <script 
     type="module" 
-    src='https://unpkg.com/@huluvu424242/honey-speech@0.0.9/dist/honey-speech/honey-speech.js'>
+    src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.9/dist/honey-slideshow/honey-slideshow.js'>
 </script>
 ```
-To the [demo site](https://funthomas424242.github.io/honey-speech/index.html)
+To the [demo site](https://funthomas424242.github.io/honey-slideshow/index.html)
 
-[Vision of API (under construction)](src/components/honey-speech/readme.md)
+[Vision of API (under construction)](src/components/honey-slideshow/readme.md)
 
 ## demo
 
@@ -34,11 +34,11 @@ To the [demo site](https://funthomas424242.github.io/honey-speech/index.html)
 ```
 -->
 ```html
-<honey-speech textids="text1,text2"></honey-speech>
+<honey-slideshow textids="text1,text2"></honey-slideshow>
 <p id="text1">fizz fizz fizz fizz</p>
 <p id="text2">buzz buzz buzz buzz</p>
 ```
-To the [live demo](https://funthomas424242.github.io/honey-speech/index.html)
+To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## become an supporter
 

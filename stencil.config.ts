@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'honey-speech',
+  namespace: 'honey-slideshow',
   outputTargets: [
     {
       type: 'dist',
@@ -12,7 +12,7 @@ export const config: Config = {
     },
     {
       type: 'docs-json',
-      file: 'src/components/honey-speech/custom-elements.json'
+      file: 'src/components/honey-slideshow/custom-elements.json'
     },
     {
       type: 'www',

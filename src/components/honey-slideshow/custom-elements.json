@@ -7,10 +7,10 @@
   },
   "components": [
     {
-      "filePath": "src/components/honey-speech/honey-speech.tsx",
+      "filePath": "src/components/honey-slideshow/honey-slideshow.tsx",
       "encapsulation": "shadow",
-      "tag": "honey-speech",
-      "readme": "# honey-speech\n",
+      "tag": "honey-slideshow",
+      "readme": "# honey-slideshow\n",
       "docs": "",
       "docsTags": [],
       "usage": {},

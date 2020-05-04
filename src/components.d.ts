@@ -10,7 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface HoneySpeech {
+  interface HoneySlideshow {
     /**
     * alt text for a11y default: "Symbol eines sprechenden Lautsprechers"
     */
@@ -63,18 +63,18 @@ export namespace Components {
 declare global {
 
 
-  interface HTMLHoneySpeechElement extends Components.HoneySpeech, HTMLStencilElement {}
-  var HTMLHoneySpeechElement: {
-    prototype: HTMLHoneySpeechElement;
-    new (): HTMLHoneySpeechElement;
+  interface HTMLHoneySlideshowElement extends Components.HoneySlideshow, HTMLStencilElement {}
+  var HTMLHoneySlideshowElement: {
+    prototype: HTMLHoneySlideshowElement;
+    new (): HTMLHoneySlideshowElement;
   };
   interface HTMLElementTagNameMap {
-    'honey-speech': HTMLHoneySpeechElement;
+    'honey-slideshow': HTMLHoneySlideshowElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface HoneySpeech {
+  interface HoneySlideshow {
     /**
     * alt text for a11y default: "Symbol eines sprechenden Lautsprechers"
     */
@@ -140,7 +140,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
-    'honey-speech': HoneySpeech;
+    'honey-slideshow': HoneySlideshow;
   }
 }
 
@@ -150,7 +150,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-      'honey-speech': LocalJSX.HoneySpeech & JSXBase.HTMLAttributes<HTMLHoneySpeechElement>;
+      'honey-slideshow': LocalJSX.HoneySlideshow & JSXBase.HTMLAttributes<HTMLHoneySlideshowElement>;
     }
   }
 }

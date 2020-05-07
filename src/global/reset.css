@@ -1,0 +1,16 @@
+@media all {
+  html {
+    /*overflow-y: scroll ;*/
+    background-color: beige;
+    color: blue;
+  }
+
+  body, div, p, ul, ol, li, table, th, td {
+    padding: 0;
+    margin: 0;
+  }
+
+  header, body, main, footer {
+    display: block;
+  }
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
@@ -8,29 +8,27 @@
   <script type="module" src="/build/honey-slideshow.esm.js"></script>
   <script nomodule src="/build/honey-slideshow.js"></script>
 
-  <style>
-
-  </style>
+  <link rel="stylesheet" href="build/honey-slideshow.css">
 </head>
 <body id="seite">
 
-<h1>Beispiel zur Nutzung der honey-slideshow Komponente</h1>
+<!--<h1>Beispiel zur Nutzung der honey-slideshow Komponente</h1>-->
 
-<honey-slideshow textids="seite" titletext="Seite vorlesen">
+<honey-slideshow>
   <!--
   baseurl: URL zum Downloadverzeichnis in dem alle Slides und Texte der Präsentation abliegen
   slideorder: Namen der Filenamen. Die Komponente ergänzt automatisch die Extension .md für die Folien und .txt für die Beschreibungstexte
   -->
-  <script>
-    {
-      baseurl: https://funthomas424242.github.io/slideshow-portal/test/unittest/
-      slideorder: ["slide1", "slide2", "ende"]
-    }
-  </script>
+  <!--  <script>-->
+  <!--    {-->
+  <!--      baseurl: https://funthomas424242.github.io/slideshow-portal/test/unittest/-->
+  <!--      slideorder: ["slide1", "slide2", "ende"]-->
+  <!--    }-->
+  <!--  </script>-->
 
 </honey-slideshow>
 
-<div id="slidewin"></div>
+<!--<div id="slidewin"></div>-->
 
 </body>
 </html>

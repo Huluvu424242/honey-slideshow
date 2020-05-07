@@ -10,54 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface HoneySlideshow {
-    /**
-    * alt text for a11y default: "Symbol eines sprechenden Lautsprechers"
-    */
-    'alttext': string;
-    /**
-    * i18n language ident for Web Speech API: de-DE or en or de ...
-    */
-    'audiolang': string;
-    /**
-    * pitch for Web Speech API: default: 1
-    */
-    'audiopitch': number;
-    /**
-    * rate for Web Speech API: default 1
-    */
-    'audiorate': number;
-    /**
-    * volume for Web Speech API: default 1
-    */
-    'audiovolume': number;
-    /**
-    * An JSON Object with i18n text values separeted by language idents: currently unused  { "deDE" : { "error": "Fehler}, "en" : { "error" : "Error"}}
-    */
-    'i18n': object;
-    /**
-    * icon height, default: 36
-    * @param iconheight
-    * @default 36
-    */
-    'iconheight': string;
-    /**
-    * icon width default: 36
-    */
-    'iconwidth': string;
-    /**
-    * An comma separated list  with ids of DOM elements which inner text should be speech.
-    */
-    'textids': string;
-    /**
-    * title text for a11y = tooltip default: Vorlesen
-    */
-    'titletext': string;
-    /**
-    * voice name used of Web Speech API: default undefined
-    */
-    'voicename': string;
-  }
+  interface HoneySlideshow {}
 }
 
 declare global {
@@ -74,70 +27,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface HoneySlideshow {
-    /**
-    * alt text for a11y default: "Symbol eines sprechenden Lautsprechers"
-    */
-    'alttext'?: string;
-    /**
-    * i18n language ident for Web Speech API: de-DE or en or de ...
-    */
-    'audiolang'?: string;
-    /**
-    * pitch for Web Speech API: default: 1
-    */
-    'audiopitch'?: number;
-    /**
-    * rate for Web Speech API: default 1
-    */
-    'audiorate'?: number;
-    /**
-    * volume for Web Speech API: default 1
-    */
-    'audiovolume'?: number;
-    /**
-    * An JSON Object with i18n text values separeted by language idents: currently unused  { "deDE" : { "error": "Fehler}, "en" : { "error" : "Error"}}
-    */
-    'i18n'?: object;
-    /**
-    * icon height, default: 36
-    * @param iconheight
-    * @default 36
-    */
-    'iconheight'?: string;
-    /**
-    * icon width default: 36
-    */
-    'iconwidth'?: string;
-    /**
-    * Fired if the stimme has failed to speak.
-    */
-    'onSpeakerFailed'?: (event: CustomEvent<any>) => void;
-    /**
-    * Fired if the stimme has finished with speaking.
-    */
-    'onSpeakerFinished'?: (event: CustomEvent<any>) => void;
-    /**
-    * Fired if the stimme is paused with speaking.
-    */
-    'onSpeakerPaused'?: (event: CustomEvent<any>) => void;
-    /**
-    * Fired if the stimme is speaking.
-    */
-    'onSpeakerStarted'?: (event: CustomEvent<any>) => void;
-    /**
-    * An comma separated list  with ids of DOM elements which inner text should be speech.
-    */
-    'textids': string;
-    /**
-    * title text for a11y = tooltip default: Vorlesen
-    */
-    'titletext'?: string;
-    /**
-    * voice name used of Web Speech API: default undefined
-    */
-    'voicename'?: string;
-  }
+  interface HoneySlideshow {}
 
   interface IntrinsicElements {
     'honey-slideshow': HoneySlideshow;

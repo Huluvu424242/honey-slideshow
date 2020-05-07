@@ -12,7 +12,7 @@ import {
 
 @Component({
   tag: "honey-slideshow",
-  styleUrl: "honey-slideshow-design.css",
+  styleUrl: "honey-slideshow.css",
   assetsDirs: ['assets'],
   shadow: true
 })

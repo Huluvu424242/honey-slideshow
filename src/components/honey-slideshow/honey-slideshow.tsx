@@ -27,22 +27,22 @@ export class HoneySlideshow {
   render() {
     return (
       <host>
-        <header id={"slide-control"} class={"header"}>
-          <div innerHTML={IMG_START}/>
-          <div innerHTML={IMG_FASTREWIND}/>
-          <div innerHTML={IMG_REWIND}/>
+        <div id={"slide-control"} class={"flex-container"}>
+          <div class="flex-content" innerHTML={IMG_START}/>
+          <div class="flex-content" innerHTML={IMG_FASTREWIND}/>
+          <div class="flex-content" innerHTML={IMG_REWIND}/>
 
-          <span innerHTML=
+          <div class="flex-content" innerHTML=
                   {this.isPlaying()
                     ? IMG_PAUSE
                     : IMG_PLAY
                   }>
-          </span>
+          </div>
 
-          <span innerHTML={IMG_FOREWARD}/>
-          <span innerHTML={IMG_FASTFOREWARD}/>
-          <span innerHTML={IMG_END}/>
-        </header>
+          <div class="flex-content" innerHTML={IMG_FOREWARD}/>
+          <div class="flex-content" innerHTML={IMG_FASTFOREWARD}/>
+          <div class="flex-content" innerHTML={IMG_END}/>
+        </div>
         <div id={"slide-area"}/>
       </host>
     );

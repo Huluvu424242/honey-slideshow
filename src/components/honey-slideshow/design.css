@@ -1,8 +1,15 @@
-:host {
-  display: inline;
-  background: yellow;
+/*:host {*/
+/*  display: inline;*/
+/*  background: yellow;*/
+/*}*/
+
+.flex-container {
+  display: flex;
+  text-align: center;
 }
-header * {
-  display: inline;
-  height: 150px;
+
+
+.flex-content {
+  flex: 1;
+  border: 1px solid blue;
 }

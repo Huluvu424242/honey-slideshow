@@ -6,10 +6,18 @@
 .flex-container {
   display: flex;
   text-align: center;
+  vertical-align: center;
+}
+
+svg {
+  height: 20px;
+  width: 20px;
+  margin-bottom: -5px;
 }
 
 
 .flex-content {
   flex: 1;
   border: 1px solid blue;
+  background-color: aqua;
 }

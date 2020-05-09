@@ -25,13 +25,16 @@ svg {
 }
 
 .flex-content:hover {
+  flex:3;
   border: 1px solid darkblue;
-  flex:2;
   box-shadow: 2px 2px darkblue;
 }
 
 #tags {
   flex: 14;
+  border: 1px solid blue;
+  border-radius: 6px;
   background-color: beige;
+  box-shadow: 1px 1px blue;
   text-shadow: 1px 1px 5px darkblue;
 }

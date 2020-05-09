@@ -14,21 +14,26 @@
 
 <h1>Beispiel zur Nutzung der slideshow Komponente</h1>
 
-<honey-slideshow>
-  <!--
-  baseurl: URL zum Downloadverzeichnis in dem alle Slides und Texte der Präsentation abliegen
-  slideorder: Namen der Filenamen. Die Komponente ergänzt automatisch die Extension .md für die Folien und .txt für die Beschreibungstexte
-  -->
-  <!--  <script>-->
-  <!--    {-->
-  <!--      baseurl: https://funthomas424242.github.io/slideshow-portal/test/unittest/-->
-  <!--      slideorder: ["slide1", "slide2", "ende"]-->
-  <!--    }-->
-  <!--  </script>-->
+<honey-slideshow id="slideshow1">
+
+  <h2 slot="title"> Titel der Präsentation</h2>
+  <span slot="tags" title="Schlagwörter zur Präsentation">tag1 tag2 tag3 tag4</span>
+
+  <script>
+    // <!--
+    // baseurl: URL zum Downloadverzeichnis in dem alle Slides und Texte der Präsentation abliegen
+    // slideorder: Namen der Filenamen. Die Komponente ergänzt automatisch die Extension .md für die Folien und .txt für die Beschreibungstexte
+    // -->
+    const slideshow = document.querySelector('#slideshow1');
+    slideshow.baseURL = "https://funthomas424242.github.io/slideshow-portal/test/unittest/";
+    slideshow.slides = ["slide1", "slide2", "ende"];
+  </script>
+
+
+  <div slot="slide-area" class="meine tollen styles sind dabei"></div>
 
 </honey-slideshow>
 
-<!--<div id="slidewin"></div>-->
 
 </body>
 </html>

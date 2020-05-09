@@ -27,7 +27,7 @@ export class HoneySlideshow {
     return (
       <host>
         <header>
-          <h2>Titel der Präsentation</h2>
+          <slot name={"title"}>Platzhalter für den Titel der Präsentation</slot>
         </header>
         <nav>
           <div id={"slide-control"} class={"flex-container"}>
@@ -51,10 +51,14 @@ export class HoneySlideshow {
             <div class="flex-content" title={"1 Folie weiter"} innerHTML={IMG_FOREWARD}/>
             <div class="flex-content" title={"10 Folien weiter"} innerHTML={IMG_FASTFOREWARD}/>
             <div class="flex-content" title={"Zur letzten Folie"} innerHTML={IMG_END}/>
-            <div id="tags" title={"Schlagwörter zur Präsentation"} class="flex-content">tag1 tag2 tag3 tag4</div>
+            <div id="tags">
+              <slot  name={"tags"}>Platzhalter für Tagliste</slot>
+            </div>
           </div>
-          <div id={"slide-area"}/>
         </nav>
+        <main>
+          <slot name={"slide-area"}/>
+        </main>
       </host>
     );
   }

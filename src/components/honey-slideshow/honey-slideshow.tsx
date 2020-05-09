@@ -18,7 +18,7 @@ import {
 })
 export class HoneySlideshow {
 
-  @Prop() baseURL: string;
+  @Prop() baseurl: string;
   @Prop() slides: Array<string>;
 
   @State() slide: number;
@@ -64,8 +64,8 @@ export class HoneySlideshow {
           </div>
         </nav>
         <main>
-          <span>{this.baseURL}</span>
-          <span>{this.slides}</span>
+          <div>{this.baseurl}</div>
+          <div>{this.slides}</div>
           <slot name={"slide-area"}/>
         </main>
       </host>

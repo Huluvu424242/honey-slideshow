@@ -11,7 +11,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface HoneySlideshow {
-    'baseURL': string;
+    'baseurl': string;
     'slides': Array<string>;
   }
 }
@@ -31,7 +31,7 @@ declare global {
 
 declare namespace LocalJSX {
   interface HoneySlideshow {
-    'baseURL'?: string;
+    'baseurl'?: string;
     'slides'?: Array<string>;
   }
 

@@ -19,5 +19,19 @@ svg {
 .flex-content {
   flex: 1;
   border: 1px solid blue;
+  border-radius: 6px;
   background-color: aqua;
+  box-shadow: 1px 1px blue;
+}
+
+.flex-content:hover {
+  border: 1px solid darkblue;
+  flex:2;
+  box-shadow: 2px 2px darkblue;
+}
+
+#tags {
+  flex: 14;
+  background-color: beige;
+  text-shadow: 1px 1px 5px darkblue;
 }

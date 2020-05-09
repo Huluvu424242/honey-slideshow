@@ -1,4 +1,4 @@
-import {Component, h} from "@stencil/core";
+import {Component, h, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,
@@ -18,10 +18,17 @@ import {
 })
 export class HoneySlideshow {
 
+  @Prop() baseURL: string;
+  @Prop() slides: Array<string>;
 
-  isPlaying() {
-    return false;
+  @State() slide: number;
+  @State() isPlaying: boolean;
+
+  componentWillLoad() {
+    this.slide = 0;
+    this.isPlaying = false;
   }
+
 
   render() {
     return (
@@ -36,13 +43,13 @@ export class HoneySlideshow {
             <div class="flex-content" title={"1 Folie zurück"} innerHTML={IMG_REWIND}/>
 
             <div class="flex-content"
-                 title =
-                   {this.isPlaying()
+                 title=
+                   {this.isPlaying
                      ? "Sprachausgabe beenden"
                      : "Vortrag beginnen lassen"
                    }
                  innerHTML=
-                   {this.isPlaying()
+                   {this.isPlaying
                      ? IMG_PAUSE
                      : IMG_PLAY
                    }>
@@ -52,11 +59,13 @@ export class HoneySlideshow {
             <div class="flex-content" title={"10 Folien weiter"} innerHTML={IMG_FASTFOREWARD}/>
             <div class="flex-content" title={"Zur letzten Folie"} innerHTML={IMG_END}/>
             <div id="tags">
-              <slot  name={"tags"}>Platzhalter für Tagliste</slot>
+              <slot name={"tags"}>Platzhalter für Tagliste</slot>
             </div>
           </div>
         </nav>
         <main>
+          <span>{this.baseURL}</span>
+          <span>{this.slides}</span>
           <slot name={"slide-area"}/>
         </main>
       </host>

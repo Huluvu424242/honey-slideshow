@@ -17,7 +17,6 @@
 <honey-slideshow id="slideshow1">
 
   <h2 slot="title"> Titel der Präsentation</h2>
-  <span slot="tags" title="Schlagwörter zur Präsentation">tag1 tag2 tag3 tag4</span>
 
   <script>
     // <!--
@@ -27,6 +26,7 @@
     const slideshow = document.querySelector('#slideshow1');
     slideshow.baseurl = "https://funthomas424242.github.io/foile-pile/test/unittest/";
     slideshow.slides = ["slide1", "slide2", "ende"];
+    slideshow.tags = ["tag1", "tag2", "tag3", "tag4"];
   </script>
 
 

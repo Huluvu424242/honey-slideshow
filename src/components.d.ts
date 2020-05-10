@@ -13,6 +13,7 @@ export namespace Components {
   interface HoneySlideshow {
     'baseurl': string;
     'slides': Array<string>;
+    'tags': Array<string>;
   }
 }
 
@@ -33,6 +34,7 @@ declare namespace LocalJSX {
   interface HoneySlideshow {
     'baseurl'?: string;
     'slides'?: Array<string>;
+    'tags'?: Array<string>;
   }
 
   interface IntrinsicElements {

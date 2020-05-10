@@ -20,6 +20,7 @@ export class HoneySlideshow {
 
   @Prop() baseurl: string;
   @Prop() slides: Array<string>;
+  @Prop() tags: Array<string>;
 
   @State() slide: number;
   @State() isPlaying: boolean;
@@ -38,7 +39,7 @@ export class HoneySlideshow {
   }
 
   loadSlide() {
-    alert("Lade Slide " + (this.slide +1));
+    alert("Lade Slide " + (this.slide + 1));
   }
 
   isValidSlide(slideNr: number): boolean {
@@ -49,7 +50,7 @@ export class HoneySlideshow {
     if (this.isValidSlide(slideNr)) {
       this.slide = slideNr;
       this.loadSlide();
-    }else{
+    } else {
       alert("Invalid Slide -> no change");
     }
   }
@@ -92,11 +93,13 @@ export class HoneySlideshow {
       <host>
         <header>
           <slot name={"title"}>Platzhalter für den Titel der Präsentation</slot>
-          <div id="tags">
-            <slot name={"tags"}>Platzhalter für Tagliste</slot>
+          <div id="taglist" class={"tag-container"}>
+            {this.tags.map((tag) =>
+              <span class={"tag-content"}>{tag}</span>
+            )}
           </div>
         </header>
-
+        <hr class={"hr-oben"}/>
         <div id={"slide-control"} class={"flex-container"}>
           <div onClick={(event: UIEvent) => this.handleStart(event)}
                class="flex-content"
@@ -137,6 +140,7 @@ export class HoneySlideshow {
             {this.printPageNum()}
           </div>
         </div>
+        <hr class={"hr-unten"}/>
         <main>
           <div>{this.baseurl}</div>
           <div>{this.slides}</div>

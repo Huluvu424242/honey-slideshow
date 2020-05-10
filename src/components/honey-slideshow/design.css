@@ -31,12 +31,13 @@ svg {
   box-shadow: 2px 2px darkblue;
 }
 
-#tags {
-  flex: 2;
-  border: 1px solid blue;
-  background-color: beige;
-  box-shadow: 1px 1px blue;
-  text-shadow: 1px 1px 5px darkblue;
+.tag-content{
+  border: 1px solid gray;
+  border-radius: 6px;
+  background-color: lightgray;
+  box-shadow: 1px 1px gray;
+  color: black;
+  text-shadow: 1px 1px 3px black;
 }
 
 
@@ -49,4 +50,12 @@ svg {
   padding-left: 5px;
   text-align: left;
   text-shadow: 1px 1px 5px darkblue;
+}
+
+.hr-oben {
+  margin: 3px 0px 0px 1px;
+}
+
+.hr-unten {
+  margin: 3px 0px 0px 1px;
 }

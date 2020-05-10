@@ -29,40 +29,114 @@ export class HoneySlideshow {
     this.isPlaying = false;
   }
 
+  printPageNum(): string {
+    return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
+  }
+
+  playSlide() {
+    alert("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
+  }
+
+  loadSlide() {
+    alert("Lade Slide " + (this.slide +1));
+  }
+
+  isValidSlide(slideNr: number): boolean {
+    return slideNr > -1 && slideNr < (this.slides.length);
+  }
+
+  moveToSlide(slideNr: number) {
+    if (this.isValidSlide(slideNr)) {
+      this.slide = slideNr;
+      this.loadSlide();
+    }else{
+      alert("Invalid Slide -> no change");
+    }
+  }
+
+  handleStart(event: UIEvent) {
+    event.target
+    this.playSlide();
+  }
+
+
+  handleFastRewind(event: UIEvent) {
+    event.target
+    this.moveToSlide(this.slide - 10);
+  }
+
+  handleRewind(event: UIEvent) {
+    event.target
+    this.moveToSlide(this.slide - 1);
+  }
+
+
+  handleForeward(event: UIEvent) {
+    event.target
+    this.moveToSlide(this.slide + 1);
+  }
+
+  handleFastForeward(event: UIEvent) {
+    event.target
+    this.moveToSlide(this.slide + 10);
+  }
+
+  handleEnd(event: UIEvent) {
+    event.target
+    this.moveToSlide(this.slides.length - 1);
+  }
+
 
   render() {
     return (
       <host>
         <header>
           <slot name={"title"}>Platzhalter für den Titel der Präsentation</slot>
-        </header>
-        <nav>
-          <div id={"slide-control"} class={"flex-container"}>
-            <div class="flex-content" title={"Zur ersten Folie"} innerHTML={IMG_START}/>
-            <div class="flex-content" title={"10 Folien zurück"} innerHTML={IMG_FASTREWIND}/>
-            <div class="flex-content" title={"1 Folie zurück"} innerHTML={IMG_REWIND}/>
-
-            <div class="flex-content"
-                 title=
-                   {this.isPlaying
-                     ? "Sprachausgabe beenden"
-                     : "Vortrag beginnen lassen"
-                   }
-                 innerHTML=
-                   {this.isPlaying
-                     ? IMG_PAUSE
-                     : IMG_PLAY
-                   }>
-            </div>
-
-            <div class="flex-content" title={"1 Folie weiter"} innerHTML={IMG_FOREWARD}/>
-            <div class="flex-content" title={"10 Folien weiter"} innerHTML={IMG_FASTFOREWARD}/>
-            <div class="flex-content" title={"Zur letzten Folie"} innerHTML={IMG_END}/>
-            <div id="tags">
-              <slot name={"tags"}>Platzhalter für Tagliste</slot>
-            </div>
+          <div id="tags">
+            <slot name={"tags"}>Platzhalter für Tagliste</slot>
           </div>
-        </nav>
+        </header>
+
+        <div id={"slide-control"} class={"flex-container"}>
+          <div onClick={(event: UIEvent) => this.handleStart(event)}
+               class="flex-content"
+               title={"Zur ersten Folie"}
+               innerHTML={IMG_START}/>
+          <div onClick={(event: UIEvent) => this.handleFastRewind(event)}
+               class="flex-content"
+               title={"10 Folien zurück"}
+               innerHTML={IMG_FASTREWIND}/>
+          <div onClick={(event: UIEvent) => this.handleRewind(event)}
+               class="flex-content"
+               title={"1 Folie zurück"}
+               innerHTML={IMG_REWIND}/>
+          {this.isPlaying
+            ? <div
+              class="flex-content"
+              title="Sprachausgabe beenden"
+              innerHTML={IMG_PAUSE}/>
+            : <div onClick={(event: UIEvent) => this.handleStart(event)}
+                   class="flex-content"
+                   title="Vortrag beginnen lassen"
+                   innerHTML={IMG_PLAY}/>
+          }
+          <div onClick={(event: UIEvent) => this.handleForeward(event)}
+               class="flex-content"
+               title={"1 Folie weiter"}
+               innerHTML={IMG_FOREWARD}/>
+          <div onClick={(event: UIEvent) => this.handleFastForeward(event)}
+               class="flex-content"
+               title="10 Folien weiter"
+               innerHTML={IMG_FASTFOREWARD}/>
+          <div onClick={(event: UIEvent) => this.handleEnd(event)}
+               class="flex-content"
+               title="Zur letzten Folie"
+               innerHTML={IMG_END}/>
+          <div id="pagenum"
+               title={this.printPageNum()}>
+            {this.printPageNum()}
+          </div>
+        </div>
         <main>
           <div>{this.baseurl}</div>
           <div>{this.slides}</div>

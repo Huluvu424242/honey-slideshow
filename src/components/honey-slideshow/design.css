@@ -5,6 +5,7 @@
 
 .flex-container {
   display: flex;
+  flex-wrap: nowrap;
   text-align: center;
   vertical-align: center;
 }
@@ -31,10 +32,21 @@ svg {
 }
 
 #tags {
+  flex: 2;
+  border: 1px solid blue;
+  background-color: beige;
+  box-shadow: 1px 1px blue;
+  text-shadow: 1px 1px 5px darkblue;
+}
+
+
+#pagenum {
   flex: 14;
   border: 1px solid blue;
   border-radius: 6px;
   background-color: beige;
   box-shadow: 1px 1px blue;
+  padding-left: 5px;
+  text-align: left;
   text-shadow: 1px 1px 5px darkblue;
 }

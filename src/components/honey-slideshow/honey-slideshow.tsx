@@ -9,6 +9,8 @@ import {
   IMG_REWIND,
   IMG_START
 } from "./constants";
+import {Sprachausgabe} from "./sprachausgabe";
+import {Sprachauswahl} from "./sprachauswahl";
 
 @Component({
   tag: "honey-slideshow",
@@ -25,7 +27,14 @@ export class HoneySlideshow {
   @State() slide: number;
   @State() isPlaying: boolean;
 
+  sprachauswahl: Sprachauswahl;
+
+  sprachausgabe: Sprachausgabe;
+
+
   componentWillLoad() {
+    this.sprachauswahl = new Sprachauswahl();
+    this.sprachausgabe = new Sprachausgabe(this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
   }
@@ -57,9 +66,8 @@ export class HoneySlideshow {
 
   handleStart(event: UIEvent) {
     event.target
-    this.playSlide();
+    this.moveToSlide(0);
   }
-
 
   handleFastRewind(event: UIEvent) {
     event.target
@@ -71,6 +79,10 @@ export class HoneySlideshow {
     this.moveToSlide(this.slide - 1);
   }
 
+  handlePlay(event: UIEvent) {
+    event.target
+    this.playSlide();
+  }
 
   handleForeward(event: UIEvent) {
     event.target
@@ -118,7 +130,7 @@ export class HoneySlideshow {
               class="flex-content"
               title="Sprachausgabe beenden"
               innerHTML={IMG_PAUSE}/>
-            : <div onClick={(event: UIEvent) => this.handleStart(event)}
+            : <div onClick={(event: UIEvent) => this.handlePlay(event)}
                    class="flex-content"
                    title="Vortrag beginnen lassen"
                    innerHTML={IMG_PLAY}/>

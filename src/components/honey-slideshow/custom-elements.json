@@ -1,5 +1,5 @@
 {
-  "timestamp": "2020-03-02T22:17:35",
+  "timestamp": "2020-05-13T19:44:17",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.8.11",
@@ -7,7 +7,7 @@
   },
   "components": [
     {
-      "filePath": "src/components/honey-slideshow/honey-slideshow.tsx",
+      "filePath": "src\\components\\honey-slideshow\\honey-slideshow.tsx",
       "encapsulation": "shadow",
       "tag": "honey-slideshow",
       "readme": "# honey-slideshow\n",
@@ -16,12 +16,12 @@
       "usage": {},
       "props": [
         {
-          "name": "alttext",
+          "name": "baseurl",
           "type": "string",
           "mutable": false,
-          "attr": "alttext",
+          "attr": "baseurl",
           "reflectToAttr": false,
-          "docs": "alt text for a11y\ndefault: \"Symbol eines sprechenden Lautsprechers\"",
+          "docs": "",
           "docsTags": [],
           "values": [
             {
@@ -32,168 +32,30 @@
           "required": false
         },
         {
-          "name": "audiolang",
-          "type": "string",
+          "name": "slides",
+          "type": "string[]",
           "mutable": false,
-          "attr": "audiolang",
           "reflectToAttr": false,
-          "docs": "i18n language ident for Web Speech API: de-DE or en or de ...",
+          "docs": "",
           "docsTags": [],
           "values": [
             {
-              "type": "string"
+              "type": "string[]"
             }
           ],
           "optional": false,
           "required": false
         },
         {
-          "name": "audiopitch",
-          "type": "number",
+          "name": "tags",
+          "type": "string[]",
           "mutable": false,
-          "attr": "audiopitch",
           "reflectToAttr": false,
-          "docs": "pitch for Web Speech API: default: 1",
+          "docs": "",
           "docsTags": [],
           "values": [
             {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "audiorate",
-          "type": "number",
-          "mutable": false,
-          "attr": "audiorate",
-          "reflectToAttr": false,
-          "docs": "rate for Web Speech API: default 1",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "audiovolume",
-          "type": "number",
-          "mutable": false,
-          "attr": "audiovolume",
-          "reflectToAttr": false,
-          "docs": "volume for Web Speech API: default 1",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "i18n",
-          "type": "object",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "An JSON Object with i18n text values separeted by language idents:\ncurrently unused\n\n{ \"deDE\" : { \"error\": \"Fehler}, \"en\" : { \"error\" : \"Error\"}}",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "object"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "iconheight",
-          "type": "string",
-          "mutable": false,
-          "attr": "iconheight",
-          "reflectToAttr": false,
-          "docs": "icon height, default: 36",
-          "docsTags": [
-            {
-              "text": "iconheight",
-              "name": "param"
-            },
-            {
-              "text": "36",
-              "name": "default"
-            }
-          ],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "iconwidth",
-          "type": "string",
-          "mutable": false,
-          "attr": "iconwidth",
-          "reflectToAttr": false,
-          "docs": "icon width\ndefault: 36",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "textids",
-          "type": "string",
-          "mutable": false,
-          "attr": "textids",
-          "reflectToAttr": false,
-          "docs": "An comma separated list  with ids of DOM elements\nwhich inner text should be speech.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": true
-        },
-        {
-          "name": "titletext",
-          "type": "string",
-          "mutable": false,
-          "attr": "titletext",
-          "reflectToAttr": false,
-          "docs": "title text for a11y = tooltip\ndefault: Vorlesen",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "voicename",
-          "type": "string",
-          "mutable": false,
-          "attr": "voicename",
-          "reflectToAttr": false,
-          "docs": "voice name used of Web Speech API: default undefined",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
+              "type": "string[]"
             }
           ],
           "optional": false,
@@ -201,44 +63,7 @@
         }
       ],
       "methods": [],
-      "events": [
-        {
-          "event": "speakerFailed",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Fired if the stimme has failed to speak.",
-          "docsTags": []
-        },
-        {
-          "event": "speakerFinished",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Fired if the stimme has finished with speaking.",
-          "docsTags": []
-        },
-        {
-          "event": "speakerPaused",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Fired if the stimme is paused with speaking.",
-          "docsTags": []
-        },
-        {
-          "event": "speakerStarted",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Fired if the stimme is speaking.",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "dependents": [],

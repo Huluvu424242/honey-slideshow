@@ -11,6 +11,8 @@ import {
 } from "./constants";
 import {Sprachausgabe} from "./sprachausgabe";
 import {Sprachauswahl} from "./sprachauswahl";
+import {Logger} from "./logger";
+import {FileLoader} from "./FileLoader";
 
 @Component({
   tag: "honey-slideshow",
@@ -49,6 +51,11 @@ export class HoneySlideshow {
 
   loadSlide() {
     alert("Lade Slide " + (this.slide + 1));
+    const url: URL = new URL("https://funthomas424242.github.io/foile-pile/test/unittest/slide1.md");
+    const fileLoader: FileLoader = new FileLoader(url);
+    fileLoader.getFileContent().subscribe(content => {
+      Logger.infoMessage("MD Inhalt:\n" + content);
+    });
   }
 
   isValidSlide(slideNr: number): boolean {

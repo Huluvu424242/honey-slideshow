@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'honey-slideshow',
+  globalStyle:  'src/global/global.css',
   outputTargets: [
     {
       type: 'dist',

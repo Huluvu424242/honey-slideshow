@@ -55,6 +55,10 @@ export class HoneySlideshow {
     const fileLoader: FileLoader = new FileLoader(url);
     fileLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
+      const element = document.getElementById("slidewin");
+      const slideDiv = document.createElement("div");
+      slideDiv.innerText=content;
+      element.appendChild(slideDiv);
     });
   }
 

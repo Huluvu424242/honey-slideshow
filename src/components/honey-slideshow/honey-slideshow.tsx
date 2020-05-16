@@ -13,6 +13,7 @@ import {Sprachausgabe} from "./sprachausgabe";
 import {Sprachauswahl} from "./sprachauswahl";
 import {Logger} from "./logger";
 import {FileLoader} from "./FileLoader";
+import marked from 'marked';
 
 @Component({
   tag: "honey-slideshow",
@@ -56,9 +57,8 @@ export class HoneySlideshow {
     fileLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
       const element = document.getElementById("slidewin");
-      const slideDiv = document.createElement("div");
-      slideDiv.innerText=content;
-      element.appendChild(slideDiv);
+      const htmlContent = marked(content);
+      element.innerHTML = htmlContent;
     });
   }
 

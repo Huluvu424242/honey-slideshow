@@ -45,7 +45,8 @@
     "pruefeVersionen": "npm outdated"
   },
   "dependencies": {
-    "rxjs": "6.5.5"
+    "rxjs": "6.5.5",
+    "marked": "1.0.0"
   },
   "devDependencies": {
     "@stencil/core": "1.8.11",

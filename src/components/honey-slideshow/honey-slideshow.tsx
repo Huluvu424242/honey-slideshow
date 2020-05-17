@@ -12,7 +12,7 @@ import {
 import {Sprachausgabe} from "./sprachausgabe";
 import {Sprachauswahl} from "./sprachauswahl";
 import {Logger} from "./logger";
-import {FileLoader} from "./FileLoader";
+import {FileLoader} from "./file-loader";
 import marked from 'marked';
 
 @Component({

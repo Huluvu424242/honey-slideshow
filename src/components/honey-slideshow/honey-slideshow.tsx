@@ -35,24 +35,31 @@ export class HoneySlideshow {
   sprachausgabe: Sprachausgabe;
 
 
+  // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   componentWillLoad() {
     this.sprachauswahl = new Sprachauswahl();
     this.sprachausgabe = new Sprachausgabe(this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
+    this.loadSlide();
   }
+
 
   printPageNum(): string {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
   }
 
   playSlide() {
-    alert("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
+    Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
   }
 
   loadSlide() {
-    alert("Lade Slide " + (this.slide + 1));
-    const url: URL = new URL("https://funthomas424242.github.io/foile-pile/test/unittest/slide1.md");
+    Logger.debugMessage("Lade Slide " + (this.slide + 1));
+    const slideNr: number = this.slide;
+    const slideFileName:string = this.slides[slideNr]+".md";
+    // TODO next feature
+    // const audioFileName:string = this.slides[slideNr]+".txt";
+    const url: URL = new URL(this.baseurl+"/"+slideFileName);
     const fileLoader: FileLoader = new FileLoader(url);
     fileLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
@@ -165,8 +172,8 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          <div>{this.baseurl}</div>
-          <div>{this.slides}</div>
+          {/*<div>{this.baseurl}</div>*/}
+          {/*<div>{this.slides}</div>*/}
           <slot name={"slide-area"}/>
         </main>
       </host>

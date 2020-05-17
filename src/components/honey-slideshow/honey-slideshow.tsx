@@ -35,6 +35,17 @@ export class HoneySlideshow {
   sprachausgabe: Sprachausgabe;
 
 
+  getCurrentSlideURLExternalForm(): string {
+    const slideNr: number = this.slide;
+    const slideFileName: string = this.slides[slideNr];
+    if (this.baseurl.endsWith("/")) {
+      return this.baseurl + slideFileName;
+    } else {
+      return this.baseurl + "/" + slideFileName;
+    }
+  }
+
+
   // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   componentWillLoad() {
     this.sprachauswahl = new Sprachauswahl();
@@ -53,14 +64,15 @@ export class HoneySlideshow {
     Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
   }
 
+
   loadSlide() {
     Logger.debugMessage("Lade Slide " + (this.slide + 1));
-    const slideNr: number = this.slide;
-    const slideFileName:string = this.slides[slideNr]+".md";
     // TODO next feature
-    // const audioFileName:string = this.slides[slideNr]+".txt";
-    const url: URL = new URL(this.baseurl+"/"+slideFileName);
-    const fileLoader: FileLoader = new FileLoader(url);
+    // const slideFileName:string = this.getCurrentSlideURLExternalForm()+".txt";
+    const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
+    const slideURL: URL = new URL(slideFileName);
+    Logger.infoMessage("slideURL: " + slideURL);
+    const fileLoader: FileLoader = new FileLoader(slideURL);
     fileLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
       const element = document.getElementById("slidewin");
@@ -172,8 +184,7 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          {/*<div>{this.baseurl}</div>*/}
-          {/*<div>{this.slides}</div>*/}
+          <div>Folie: {this.getCurrentSlideURLExternalForm()}</div>
           <slot name={"slide-area"}/>
         </main>
       </host>

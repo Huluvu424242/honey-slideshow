@@ -12,7 +12,8 @@ import {
 import {Sprachausgabe} from "./sprachausgabe";
 import {Sprachauswahl} from "./sprachauswahl";
 import {Logger} from "./logger";
-import {FileLoader} from "./FileLoader";
+import {FileLoader} from "./file-loader";
+import marked from 'marked';
 
 @Component({
   tag: "honey-slideshow",
@@ -34,27 +35,49 @@ export class HoneySlideshow {
   sprachausgabe: Sprachausgabe;
 
 
+  getCurrentSlideURLExternalForm(): string {
+    const slideNr: number = this.slide;
+    const slideFileName: string = this.slides[slideNr];
+    if (this.baseurl.endsWith("/")) {
+      return this.baseurl + slideFileName;
+    } else {
+      return this.baseurl + "/" + slideFileName;
+    }
+  }
+
+
+  // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   componentWillLoad() {
     this.sprachauswahl = new Sprachauswahl();
     this.sprachausgabe = new Sprachausgabe(this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
+    this.loadSlide();
   }
+
 
   printPageNum(): string {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
   }
 
   playSlide() {
-    alert("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
+    Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
   }
 
+
   loadSlide() {
-    alert("Lade Slide " + (this.slide + 1));
-    const url: URL = new URL("https://funthomas424242.github.io/foile-pile/test/unittest/slide1.md");
-    const fileLoader: FileLoader = new FileLoader(url);
+    Logger.debugMessage("Lade Slide " + (this.slide + 1));
+    // TODO next feature
+    // const slideFileName:string = this.getCurrentSlideURLExternalForm()+".txt";
+    const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
+    const slideURL: URL = new URL(slideFileName);
+    Logger.infoMessage("slideURL: " + slideURL);
+    const fileLoader: FileLoader = new FileLoader(slideURL);
     fileLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
+      const element = document.getElementById("slidewin");
+      const htmlContent = marked(content);
+      element.innerHTML = htmlContent;
     });
   }
 
@@ -161,8 +184,7 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          <div>{this.baseurl}</div>
-          <div>{this.slides}</div>
+          <div>Quelle: {this.getCurrentSlideURLExternalForm()}</div>
           <slot name={"slide-area"}/>
         </main>
       </host>

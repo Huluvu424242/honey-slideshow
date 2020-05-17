@@ -184,7 +184,7 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          <div>Folie: {this.getCurrentSlideURLExternalForm()}</div>
+          <div>Quelle: {this.getCurrentSlideURLExternalForm()}</div>
           <slot name={"slide-area"}/>
         </main>
       </host>

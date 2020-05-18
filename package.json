@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "rxjs": "6.5.5",
-    "marked": "1.0.0"
+    "marked": "1.0.0",
+    "@ionic/core": "5.1.1"
   },
   "devDependencies": {
     "@stencil/core": "1.8.11",

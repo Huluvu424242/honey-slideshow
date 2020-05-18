@@ -13,7 +13,10 @@ import {Sprachausgabe} from "./sprachausgabe";
 import {Sprachauswahl} from "./sprachauswahl";
 import {Logger} from "./logger";
 import {FileLoader} from "./file-loader";
-import marked from 'marked';
+import marked from "marked";
+import {IonicSafeString} from "@ionic/core";
+
+
 
 @Component({
   tag: "honey-slideshow",
@@ -77,7 +80,8 @@ export class HoneySlideshow {
       Logger.infoMessage("MD Inhalt:\n" + content);
       const element = document.getElementById("slidewin");
       const htmlContent = marked(content);
-      element.innerHTML = htmlContent;
+      const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
+      element.innerHTML = sanifiedHtmlContent;
     });
   }
 

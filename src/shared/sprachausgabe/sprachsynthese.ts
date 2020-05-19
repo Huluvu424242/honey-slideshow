@@ -1,3 +1,5 @@
+import {Logger} from "../logging/logger";
+
 export class Sprachsynthese {
   static sprachSynthese: SpeechSynthesis = window.speechSynthesis;
 
@@ -20,6 +22,7 @@ export class Sprachsynthese {
   }
 
   public static getVoices(): SpeechSynthesisVoice[] {
+    Logger.infoMessage("call getVoices");
     return Sprachsynthese.sprachSynthese.getVoices();
   }
 }

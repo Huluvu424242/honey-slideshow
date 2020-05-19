@@ -9,7 +9,7 @@ export class Sprachauswahl {
   pitch: number;
 
   constructor(){
-      Logger.infoMessage("call getVoices");
+      Logger.infoMessage("create Sprachauswahl");
       this.rate=1;
       this.volume=1;
       this.pitch=1;

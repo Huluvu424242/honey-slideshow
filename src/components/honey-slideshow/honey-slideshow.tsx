@@ -17,7 +17,6 @@ import marked from "marked";
 import {IonicSafeString} from "@ionic/core";
 
 
-
 @Component({
   tag: "honey-slideshow",
   styleUrl: "honey-slideshow.css",
@@ -71,17 +70,22 @@ export class HoneySlideshow {
   loadSlide() {
     Logger.debugMessage("Lade Slide " + (this.slide + 1));
     // TODO next feature
-    // const slideFileName:string = this.getCurrentSlideURLExternalForm()+".txt";
+    const audioFileName: string = this.getCurrentSlideURLExternalForm() + ".txt";
     const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
+    const audioURL: URL = new URL(audioFileName);
     const slideURL: URL = new URL(slideFileName);
-    Logger.infoMessage("slideURL: " + slideURL);
-    const fileLoader: Fileloader = new Fileloader(slideURL);
-    fileLoader.getFileContent().subscribe(content => {
+    Logger.infoMessage("slideURL: " + slideURL + "\naudioURL: " + audioURL);
+    const slideLoader: Fileloader = new Fileloader(slideURL);
+    slideLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
       const element = document.getElementById("slidewin");
       const htmlContent = marked(content);
       const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
       element.innerHTML = sanifiedHtmlContent;
+      const audioLoader: Fileloader = new Fileloader(slideURL);
+      audioLoader.getFileContent().subscribe(audioContent => {
+        this.sprachausgabe.textVorlesen(audioContent);
+      });
     });
   }
 

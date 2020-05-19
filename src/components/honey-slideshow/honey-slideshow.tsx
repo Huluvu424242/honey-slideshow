@@ -82,7 +82,7 @@ export class HoneySlideshow {
       const htmlContent = marked(content);
       const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
       element.innerHTML = sanifiedHtmlContent;
-      const audioLoader: Fileloader = new Fileloader(slideURL);
+      const audioLoader: Fileloader = new Fileloader(audioURL);
       audioLoader.getFileContent().subscribe(audioContent => {
         this.sprachausgabe.textVorlesen(audioContent);
       });

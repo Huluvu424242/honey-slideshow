@@ -1,5 +1,5 @@
 import {Logger} from "../logging/logger";
-import {Sprachauswahl} from "../sprachauswahl/sprachauswahl";
+import {Sprachauswahl} from "../sprachauswahl/voicechooser";
 import {Sprachsynthese} from "./sprachsynthese";
 
 

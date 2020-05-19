@@ -1,5 +1,5 @@
-import {Logger} from "./logger";
-import{Sprachsynthese} from "./sprachsynthese";
+import {Logger} from "../../shared/logging/logger";
+import{Sprachsynthese} from "../../shared/sprachausgabe/sprachsynthese";
 
 export class Sprachauswahl {
 

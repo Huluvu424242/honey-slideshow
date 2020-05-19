@@ -8,11 +8,11 @@ import {
   IMG_PLAY,
   IMG_REWIND,
   IMG_START
-} from "./constants";
-import {Sprachausgabe} from "./sprachausgabe";
-import {Sprachauswahl} from "./sprachauswahl";
-import {Logger} from "./logger";
-import {FileLoader} from "./file-loader";
+} from "./icon-constants";
+import {Sprachausgabe} from "../../shared/sprachausgabe/sprachausgabe";
+import {Sprachauswahl} from "../../shared/sprachauswahl/sprachauswahl";
+import {Logger} from "../../shared/logging/logger";
+import {Fileloader} from "../../shared/network/fileloader";
 import marked from "marked";
 import {IonicSafeString} from "@ionic/core";
 
@@ -75,7 +75,7 @@ export class HoneySlideshow {
     const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
     const slideURL: URL = new URL(slideFileName);
     Logger.infoMessage("slideURL: " + slideURL);
-    const fileLoader: FileLoader = new FileLoader(slideURL);
+    const fileLoader: Fileloader = new Fileloader(slideURL);
     fileLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
       const element = document.getElementById("slidewin");

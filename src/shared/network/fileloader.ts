@@ -1,7 +1,7 @@
 import {Subject} from "rxjs";
 
 
-export class FileLoader {
+export class Fileloader {
 
   url: URL;
 

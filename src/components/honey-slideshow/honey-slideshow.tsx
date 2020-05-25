@@ -10,11 +10,12 @@ import {
   IMG_START
 } from "./icon-constants";
 import {Sprachausgabe} from "../../shared/sprachausgabe/sprachausgabe";
-import {Sprachauswahl} from "../../shared/sprachauswahl/sprachauswahl";
+import {Sprachauswahl} from "../../shared/stimmenauswahl/stimmenauswahl";
 import {Logger} from "../../shared/logging/logger";
 import {Fileloader} from "../../shared/network/fileloader";
 import marked from "marked";
 import {IonicSafeString} from "@ionic/core";
+import {Sprachsynthese} from "../../shared/sprachausgabe/sprachsynthese";
 
 
 @Component({
@@ -50,8 +51,9 @@ export class HoneySlideshow {
 
   // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   componentWillLoad() {
-    this.sprachauswahl = new Sprachauswahl();
-    this.sprachausgabe = new Sprachausgabe(this.sprachauswahl);
+    const sprachsynthese: Sprachsynthese = new Sprachsynthese();
+    this.sprachauswahl = new Sprachauswahl(sprachsynthese);
+    this.sprachausgabe = new Sprachausgabe(sprachsynthese,this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
     this.loadSlide();
@@ -64,6 +66,7 @@ export class HoneySlideshow {
 
   playSlide() {
     Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
+    this.loadSlide();
   }
 
 

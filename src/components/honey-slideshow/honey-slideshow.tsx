@@ -59,6 +59,7 @@ export class HoneySlideshow {
     this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
+    this.loadSlideContent();
   }
 
   componentDidLoad() {
@@ -76,18 +77,24 @@ export class HoneySlideshow {
 
   playSlide() {
     Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
-    this.loadSlide();
+    this.loadAudioContent();
   }
 
 
-  loadSlide() {
-    Logger.debugMessage("Lade Slide " + (this.slide + 1));
-    // TODO next feature
+  loadAudioContent() {
     const audioFileName: string = this.getCurrentSlideURLExternalForm() + ".txt";
-    const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
     const audioURL: URL = new URL(audioFileName);
+    Logger.infoMessage("audioURL: " + audioURL);
+    const audioLoader: Fileloader = new Fileloader(audioURL);
+    audioLoader.getFileContent().subscribe(audioContent => {
+      this.sprachausgabe.textVorlesen(audioContent);
+    });
+  }
+
+  loadSlideContent(){
+    const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
     const slideURL: URL = new URL(slideFileName);
-    Logger.infoMessage("slideURL: " + slideURL + "\naudioURL: " + audioURL);
+    Logger.infoMessage("slideURL: " + slideURL);
     const slideLoader: Fileloader = new Fileloader(slideURL);
     slideLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
@@ -95,11 +102,15 @@ export class HoneySlideshow {
       const htmlContent = marked(content);
       const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
       element.innerHTML = sanifiedHtmlContent;
-      const audioLoader: Fileloader = new Fileloader(audioURL);
-      audioLoader.getFileContent().subscribe(audioContent => {
-        this.sprachausgabe.textVorlesen(audioContent);
-      });
     });
+  }
+
+
+  loadSlide() {
+    Logger.debugMessage("Lade Slide " + (this.slide + 1));
+    this.loadSlideContent();
+    this.loadAudioContent();
+
   }
 
   isValidSlide(slideNr: number): boolean {

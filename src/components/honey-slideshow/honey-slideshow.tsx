@@ -1,4 +1,4 @@
-import {Component, h, Prop, State} from "@stencil/core";
+import {Component, Element, h, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,
@@ -25,6 +25,9 @@ import {Sprachsynthese} from "../../shared/sprachausgabe/sprachsynthese";
   shadow: true
 })
 export class HoneySlideshow {
+
+  // Host Element
+  @Element() el: HTMLElement;
 
   @Prop() baseurl: string;
   @Prop() slides: Array<string>;
@@ -53,12 +56,19 @@ export class HoneySlideshow {
   componentWillLoad() {
     const sprachsynthese: Sprachsynthese = new Sprachsynthese();
     this.sprachauswahl = new Sprachauswahl(sprachsynthese);
-    this.sprachausgabe = new Sprachausgabe(sprachsynthese,this.sprachauswahl);
+    this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
-    this.loadSlide();
   }
 
+  componentDidLoad() {
+    Logger.debugMessage("componentDidLoad");
+    const element: HTMLElement = this.el;
+    setTimeout(function () {
+      const playButton: HTMLButtonElement = element.shadowRoot.querySelector<HTMLButtonElement>("#playbutton") as HTMLButtonElement;
+      playButton.click();
+    }, 3000)
+  }
 
   printPageNum(): string {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
@@ -171,10 +181,11 @@ export class HoneySlideshow {
               class="flex-content"
               title="Sprachausgabe beenden"
               innerHTML={IMG_PAUSE}/>
-            : <div onClick={(event: UIEvent) => this.handlePlay(event)}
-                   class="flex-content"
-                   title="Vortrag beginnen lassen"
-                   innerHTML={IMG_PLAY}/>
+            : <button onClick={(event: UIEvent) => this.handlePlay(event)}
+                      id="playbutton"
+                      class="flex-content"
+                      title="Vortrag beginnen lassen"
+                      innerHTML={IMG_PLAY}/>
           }
           <div onClick={(event: UIEvent) => this.handleForeward(event)}
                class="flex-content"

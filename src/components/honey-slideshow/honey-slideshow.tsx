@@ -65,10 +65,10 @@ export class HoneySlideshow {
   componentDidLoad() {
     Logger.debugMessage("componentDidLoad");
     const element: HTMLElement = this.el;
-    setTimeout(function () {
+    // setTimeout(function () {
       const playButton: HTMLButtonElement = element.shadowRoot.querySelector<HTMLButtonElement>("#playbutton") as HTMLButtonElement;
       playButton.click();
-    }, 3000)
+    // }, 3000)
   }
 
   printPageNum(): string {
@@ -82,6 +82,7 @@ export class HoneySlideshow {
 
 
   loadAudioContent() {
+    this.sprachausgabe.cancelSpeakingAndClearQueue();
     const audioFileName: string = this.getCurrentSlideURLExternalForm() + ".txt";
     const audioURL: URL = new URL(audioFileName);
     Logger.infoMessage("audioURL: " + audioURL);
@@ -110,7 +111,6 @@ export class HoneySlideshow {
     Logger.debugMessage("Lade Slide " + (this.slide + 1));
     this.loadSlideContent();
     this.loadAudioContent();
-
   }
 
   isValidSlide(slideNr: number): boolean {

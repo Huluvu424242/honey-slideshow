@@ -74,6 +74,10 @@ export class Sprachausgabe {
     }
   }
 
+  cancelSpeakingAndClearQueue(){
+    this.sprachSynthese.getSynthese().cancel();
+  }
+
 }
 
 

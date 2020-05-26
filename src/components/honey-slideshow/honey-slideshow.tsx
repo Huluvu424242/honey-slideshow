@@ -1,4 +1,4 @@
-import {Component, h, Prop, State} from "@stencil/core";
+import {Component, Element, h, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,
@@ -10,12 +10,12 @@ import {
   IMG_START
 } from "./icon-constants";
 import {Sprachausgabe} from "../../shared/sprachausgabe/sprachausgabe";
-import {Sprachauswahl} from "../../shared/sprachauswahl/sprachauswahl";
+import {Sprachauswahl} from "../../shared/stimmenauswahl/stimmenauswahl";
 import {Logger} from "../../shared/logging/logger";
 import {Fileloader} from "../../shared/network/fileloader";
 import marked from "marked";
 import {IonicSafeString} from "@ionic/core";
-
+import {Sprachsynthese} from "../../shared/sprachausgabe/sprachsynthese";
 
 
 @Component({
@@ -25,6 +25,9 @@ import {IonicSafeString} from "@ionic/core";
   shadow: true
 })
 export class HoneySlideshow {
+
+  // Host Element
+  @Element() el: HTMLElement;
 
   @Prop() baseurl: string;
   @Prop() slides: Array<string>;
@@ -51,13 +54,22 @@ export class HoneySlideshow {
 
   // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   componentWillLoad() {
-    this.sprachauswahl = new Sprachauswahl();
-    this.sprachausgabe = new Sprachausgabe(this.sprachauswahl);
+    const sprachsynthese: Sprachsynthese = new Sprachsynthese();
+    this.sprachauswahl = new Sprachauswahl(sprachsynthese);
+    this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl);
     this.slide = 0;
     this.isPlaying = false;
-    this.loadSlide();
+    this.loadSlideContent();
   }
 
+  componentDidLoad() {
+    Logger.debugMessage("componentDidLoad");
+    const element: HTMLElement = this.el;
+    // setTimeout(function () {
+      const playButton: HTMLButtonElement = element.shadowRoot.querySelector<HTMLButtonElement>("#playbutton") as HTMLButtonElement;
+      playButton.click();
+    // }, 3000)
+  }
 
   printPageNum(): string {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
@@ -65,24 +77,40 @@ export class HoneySlideshow {
 
   playSlide() {
     Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
+    this.loadAudioContent();
   }
 
 
-  loadSlide() {
-    Logger.debugMessage("Lade Slide " + (this.slide + 1));
-    // TODO next feature
-    // const slideFileName:string = this.getCurrentSlideURLExternalForm()+".txt";
+  loadAudioContent() {
+    this.sprachausgabe.cancelSpeakingAndClearQueue();
+    const audioFileName: string = this.getCurrentSlideURLExternalForm() + ".txt";
+    const audioURL: URL = new URL(audioFileName);
+    Logger.infoMessage("audioURL: " + audioURL);
+    const audioLoader: Fileloader = new Fileloader(audioURL);
+    audioLoader.getFileContent().subscribe(audioContent => {
+      this.sprachausgabe.textVorlesen(audioContent);
+    });
+  }
+
+  loadSlideContent(){
     const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
     const slideURL: URL = new URL(slideFileName);
     Logger.infoMessage("slideURL: " + slideURL);
-    const fileLoader: Fileloader = new Fileloader(slideURL);
-    fileLoader.getFileContent().subscribe(content => {
+    const slideLoader: Fileloader = new Fileloader(slideURL);
+    slideLoader.getFileContent().subscribe(content => {
       Logger.infoMessage("MD Inhalt:\n" + content);
       const element = document.getElementById("slidewin");
       const htmlContent = marked(content);
       const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
       element.innerHTML = sanifiedHtmlContent;
     });
+  }
+
+
+  loadSlide() {
+    Logger.debugMessage("Lade Slide " + (this.slide + 1));
+    this.loadSlideContent();
+    this.loadAudioContent();
   }
 
   isValidSlide(slideNr: number): boolean {
@@ -164,10 +192,11 @@ export class HoneySlideshow {
               class="flex-content"
               title="Sprachausgabe beenden"
               innerHTML={IMG_PAUSE}/>
-            : <div onClick={(event: UIEvent) => this.handlePlay(event)}
-                   class="flex-content"
-                   title="Vortrag beginnen lassen"
-                   innerHTML={IMG_PLAY}/>
+            : <button onClick={(event: UIEvent) => this.handlePlay(event)}
+                      id="playbutton"
+                      class="flex-content"
+                      title="Vortrag beginnen lassen"
+                      innerHTML={IMG_PLAY}/>
           }
           <div onClick={(event: UIEvent) => this.handleForeward(event)}
                class="flex-content"

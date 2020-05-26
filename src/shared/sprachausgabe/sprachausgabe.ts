@@ -1,13 +1,15 @@
 import {Logger} from "../logging/logger";
-import {Sprachauswahl} from "../sprachauswahl/sprachauswahl";
+import {Sprachauswahl} from "../stimmenauswahl/stimmenauswahl";
 import {Sprachsynthese} from "./sprachsynthese";
 
 
 export class Sprachausgabe {
 
+  sprachSynthese: Sprachsynthese;
   sprachauswahl: Sprachauswahl;
 
-  constructor(sprachauswahl: Sprachauswahl) {
+  constructor(sprachSynthese: Sprachsynthese, sprachauswahl: Sprachauswahl) {
+    this.sprachSynthese = sprachSynthese;
     this.sprachauswahl = sprachauswahl;
     Logger.infoMessage("####constructor finished");
   }
@@ -36,13 +38,15 @@ export class Sprachausgabe {
       Logger.errorMessage("Fehler beim Vorlesen");
     }
 
-    const voice: SpeechSynthesisVoice = this.sprachauswahl.getVoice();
-
     vorleser.pitch = this.sprachauswahl.getPitch();
     vorleser.rate = this.sprachauswahl.getRate();
     vorleser.volume = this.sprachauswahl.getVolume();
-    vorleser.voice = voice;
-    vorleser.lang = voice.lang;
+    vorleser.voice = this.sprachauswahl.getVoice();
+    if (vorleser.voice && vorleser.voice.lang) {
+      vorleser.lang = vorleser.voice.lang;
+    } else {
+      vorleser.lang = "de-DE";
+    }
     return vorleser;
   }
 
@@ -63,11 +67,15 @@ export class Sprachausgabe {
           } else {
             Logger.infoMessage("no voice matched for text: " + zuLesenderText);
           }
-          Sprachsynthese.getSynthese().speak(vorleser);
+          this.sprachSynthese.getSynthese().speak(vorleser);
         }
       );
 
     }
+  }
+
+  cancelSpeakingAndClearQueue(){
+    this.sprachSynthese.getSynthese().cancel();
   }
 
 }

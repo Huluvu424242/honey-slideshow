@@ -1,25 +1,25 @@
+import {Logger} from "../logging/logger";
+
 export class Sprachsynthese {
-  static sprachSynthese: SpeechSynthesis = window.speechSynthesis;
+  sprachSynthese: SpeechSynthesis = window.speechSynthesis;
+  voices: SpeechSynthesisVoice[];
 
-  // voices: SpeechSynthesisVoice[];
+  constructor() {
+    this.sprachSynthese.onvoiceschanged = () => {
+      this.voices = this.sprachSynthese.getVoices();
+      Logger.debugMessage("voices changed to: " + this.voices.join(","));
+    };
+  }
 
-  // constructor() {
-  //   // this.sprachSynthese =  window.speechSynthesis;
-  //   // this.sprachSynthese.onvoiceschanged = () => {
-  //   //   if (!this.voices || this.voices.length < 1) {
-  //   //     this.voices = this.sprachSynthese.getVoices();
-  //   //     Logger.infoMessage("voices changed to: " + this.voices.join(","));
-  //   //   } else {
-  //   //     Logger.infoMessage("voices alraedy initialized");
-  //   //   }
-  //   // };
-  // }
-
-  public static getSynthese() {
+  public  getSynthese() {
     return this.sprachSynthese;
   }
 
-  public static getVoices(): SpeechSynthesisVoice[] {
-    return Sprachsynthese.sprachSynthese.getVoices();
+  public getVoices(): SpeechSynthesisVoice[] {
+    Logger.infoMessage("call getVoices");
+    if (!this.voices) {
+      this.voices = this.sprachSynthese.getVoices();
+    }
+    return this.voices;
   }
 }

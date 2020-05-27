@@ -97,10 +97,21 @@ export class Sprachausgabe {
     }
   }
 
-  cancelSpeakingAndClearQueue() {
+  cancelSpeakingAndClearQueue(): void {
     this.sprachSynthese.getSynthese().cancel();
   }
 
+  pauseSpeakingFromQueue(): void {
+    this.sprachSynthese.getSynthese().pause();
+  }
+
+  resumeSpeakingFromQueue(): void {
+    this.sprachSynthese.getSynthese().resume();
+  }
+
+  isPaused(): boolean {
+    return this.sprachSynthese.getSynthese().paused;
+  }
 }
 
 

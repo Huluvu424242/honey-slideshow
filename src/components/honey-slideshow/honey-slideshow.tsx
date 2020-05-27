@@ -154,6 +154,20 @@ export class HoneySlideshow {
     this.moveToSlide(this.slide - 1);
   }
 
+  handlePause(event: UIEvent) {
+    event.target
+    if (this.sprachausgabe.isPaused()) {
+      this.sprachausgabe.resumeSpeakingFromQueue();
+    } else {
+      this.sprachausgabe.pauseSpeakingFromQueue();
+    }
+  }
+
+  handleStop(event: UIEvent) {
+    event.target
+    this.sprachausgabe.cancelSpeakingAndClearQueue();
+  }
+
   handlePlay(event: UIEvent) {
     event.target
     this.playSlide();
@@ -201,18 +215,17 @@ export class HoneySlideshow {
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
           {this.isPauseButtonShown ?
-            <button
-              class="flex-content"
-              title="Sprachausgabe pausieren"
-              innerHTML={IMG_PAUSE}/>
+            <button onClick={(event: UIEvent) => this.handlePause(event)}
+                    class="flex-content"
+                    title="Sprachausgabe pausieren"
+                    innerHTML={IMG_PAUSE}/>
             : ""
           }
-          {this.isPauseButtonShown
-            ?
-            <button
-              class="flex-content"
-              title="Sprachausgabe beenden"
-              innerHTML={IMG_STOP}/>
+          {this.isPauseButtonShown ?
+            <button onClick={(event: UIEvent) => this.handleStop(event)}
+                    class="flex-content"
+                    title="Sprachausgabe beenden"
+                    innerHTML={IMG_STOP}/>
             :
             <button onClick={(event: UIEvent) => this.handlePlay(event)}
                     id="playbutton"

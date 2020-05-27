@@ -54,9 +54,22 @@ export class HoneySlideshow {
 
   getVorleserCallbacks(): VorleserCallbacks {
     const callbacks: VorleserCallbacks = {}
-    callbacks.onstart = () => this.isPauseButtonShown = true;
-    callbacks.onpause = () => this.isPauseButtonShown = true;
-    callbacks.onend = () => this.isPauseButtonShown = false;
+    callbacks.onstart = () => {
+      this.isPauseButtonShown = true;
+      Logger.debugMessage("onstart");
+    }
+    callbacks.onpause = () => {
+      this.isPauseButtonShown = true;
+      Logger.debugMessage("onpause");
+    }
+    callbacks.onresume = () => {
+      this.isPauseButtonShown = true;
+      Logger.debugMessage("onresume");
+    }
+    callbacks.onend = () => {
+      this.isPauseButtonShown = false;
+      Logger.debugMessage("onend");
+    }
 
     return callbacks;
   }
@@ -214,11 +227,18 @@ export class HoneySlideshow {
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
-          {this.isPauseButtonShown ?
+          {this.isPauseButtonShown && !this.sprachausgabe.isPaused() ?
             <button onClick={(event: UIEvent) => this.handlePause(event)}
                     class="flex-content"
                     title="Sprachausgabe pausieren"
                     innerHTML={IMG_PAUSE}/>
+            : ""
+          }
+          {this.isPauseButtonShown && this.sprachausgabe.isPaused() ?
+            <button onClick={(event: UIEvent) => this.handlePause(event)}
+                    class="flex-content"
+                    title="Sprachausgabe fortsetzen"
+                    innerHTML={IMG_PLAY}/>
             : ""
           }
           {this.isPauseButtonShown ?

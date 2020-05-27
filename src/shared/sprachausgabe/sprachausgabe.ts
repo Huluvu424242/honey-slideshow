@@ -6,6 +6,7 @@ export interface VorleserCallbacks {
   onend?: () => void;
   onstart?: () => void;
   onpause?: () => void;
+  onresume?: () => void;
   onerror?: () => void;
 }
 
@@ -44,6 +45,13 @@ export class Sprachausgabe {
         Logger.debugMessage("Pause mit Vorlesen");
         if (this.vorleserCallbacks.onpause) {
           this.vorleserCallbacks.onpause();
+        }
+      }
+
+      vorleser.onresume = () => {
+        Logger.debugMessage("Fortsetzen des Vorlesen");
+        if (this.vorleserCallbacks.onresume) {
+          this.vorleserCallbacks.onresume();
         }
       }
 

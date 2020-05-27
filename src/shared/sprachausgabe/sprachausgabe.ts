@@ -74,10 +74,6 @@ export class Sprachausgabe {
   }
 
   textVorlesen(zuLesenderText: string) {
-    // if (!this.stimme) {
-    //   this.stimme = this.getDefaultStimme();
-    //   Logger.infoMessage("set default voice to " + this.stimme);
-    // }
     if (zuLesenderText) {
       const texte: string[] = zuLesenderText.match(/(\S+\s){1,20}/g);
 

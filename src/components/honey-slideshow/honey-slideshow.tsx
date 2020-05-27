@@ -7,9 +7,10 @@ import {
   IMG_PAUSE,
   IMG_PLAY,
   IMG_REWIND,
-  IMG_START
+  IMG_START,
+  IMG_STOP
 } from "./icon-constants";
-import {Sprachausgabe} from "../../shared/sprachausgabe/sprachausgabe";
+import {Sprachausgabe, VorleserCallbacks} from "../../shared/sprachausgabe/sprachausgabe";
 import {Sprachauswahl} from "../../shared/stimmenauswahl/stimmenauswahl";
 import {Logger} from "../../shared/logging/logger";
 import {Fileloader} from "../../shared/network/fileloader";
@@ -34,7 +35,8 @@ export class HoneySlideshow {
   @Prop() tags: Array<string>;
 
   @State() slide: number;
-  @State() isPlaying: boolean;
+  @State() isPlayingMode: boolean;
+  @State() isPausierend: boolean;
 
   sprachauswahl: Sprachauswahl;
 
@@ -51,24 +53,54 @@ export class HoneySlideshow {
     }
   }
 
+  getVorleserCallbacks(): VorleserCallbacks {
+    const callbacks: VorleserCallbacks = {}
+    callbacks.onstart = () => {
+      this.isPlayingMode = true;
+      this.isPausierend = false;
+      Logger.debugMessage("onstart");
+    }
+    callbacks.onpause = () => {
+      this.isPlayingMode = true;
+      this.isPausierend = true;
+      Logger.debugMessage("onpause");
+    }
+    callbacks.onresume = () => {
+      this.isPlayingMode = true;
+      this.isPausierend = false;
+      Logger.debugMessage("onresume");
+    }
+    callbacks.onend = () => {
+      this.isPlayingMode = false;
+      this.isPausierend = false;
+      Logger.debugMessage("onend");
+    }
 
-  // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
+    return callbacks;
+  }
+
+
+// wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   componentWillLoad() {
     const sprachsynthese: Sprachsynthese = new Sprachsynthese();
     this.sprachauswahl = new Sprachauswahl(sprachsynthese);
-    this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl);
+    this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl, this.getVorleserCallbacks());
     this.slide = 0;
-    this.isPlaying = false;
+    this.isPlayingMode = false;
+    this.isPausierend = false;
     this.loadSlideContent();
   }
 
   componentDidLoad() {
     Logger.debugMessage("componentDidLoad");
     const element: HTMLElement = this.el;
-    // setTimeout(function () {
-      const playButton: HTMLButtonElement = element.shadowRoot.querySelector<HTMLButtonElement>("#playbutton") as HTMLButtonElement;
-      playButton.click();
-    // }, 3000)
+    const playButton: HTMLButtonElement = element.shadowRoot.querySelector<HTMLButtonElement>("#playbutton") as HTMLButtonElement;
+    /* Der Klick funktioniert nur wenn auf der Seite schon eine menschliche Interaktion stattfand.
+     * Chrome ab 71
+     * Firefox noch nicht -> wirkt immer :)
+     * Quelle: https://www.chromestatus.com/feature/5687444770914304
+     */
+    playButton.click();
   }
 
   printPageNum(): string {
@@ -92,7 +124,7 @@ export class HoneySlideshow {
     });
   }
 
-  loadSlideContent(){
+  loadSlideContent() {
     const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
     const slideURL: URL = new URL(slideFileName);
     Logger.infoMessage("slideURL: " + slideURL);
@@ -141,6 +173,20 @@ export class HoneySlideshow {
     this.moveToSlide(this.slide - 1);
   }
 
+  handlePause(event: UIEvent) {
+    event.target
+    if (this.sprachausgabe.isPaused()) {
+      this.sprachausgabe.resumeSpeakingFromQueue();
+    } else {
+      this.sprachausgabe.pauseSpeakingFromQueue();
+    }
+  }
+
+  handleStop(event: UIEvent) {
+    event.target
+    this.sprachausgabe.cancelSpeakingAndClearQueue();
+  }
+
   handlePlay(event: UIEvent) {
     event.target
     this.playSlide();
@@ -175,41 +221,56 @@ export class HoneySlideshow {
         </header>
         <hr class={"hr-oben"}/>
         <div id={"slide-control"} class={"flex-container"}>
-          <div onClick={(event: UIEvent) => this.handleStart(event)}
-               class="flex-content"
-               title={"Zur ersten Folie"}
-               innerHTML={IMG_START}/>
-          <div onClick={(event: UIEvent) => this.handleFastRewind(event)}
-               class="flex-content"
-               title={"10 Folien zurück"}
-               innerHTML={IMG_FASTREWIND}/>
-          <div onClick={(event: UIEvent) => this.handleRewind(event)}
-               class="flex-content"
-               title={"1 Folie zurück"}
-               innerHTML={IMG_REWIND}/>
-          {this.isPlaying
-            ? <div
-              class="flex-content"
-              title="Sprachausgabe beenden"
-              innerHTML={IMG_PAUSE}/>
-            : <button onClick={(event: UIEvent) => this.handlePlay(event)}
-                      id="playbutton"
-                      class="flex-content"
-                      title="Vortrag beginnen lassen"
-                      innerHTML={IMG_PLAY}/>
+          <button onClick={(event: UIEvent) => this.handleStart(event)}
+                  class="flex-content"
+                  title={"Zur ersten Folie"}
+                  innerHTML={IMG_START}/>
+          <button onClick={(event: UIEvent) => this.handleFastRewind(event)}
+                  class="flex-content"
+                  title={"10 Folien zurück"}
+                  innerHTML={IMG_FASTREWIND}/>
+          <button onClick={(event: UIEvent) => this.handleRewind(event)}
+                  class="flex-content"
+                  title={"1 Folie zurück"}
+                  innerHTML={IMG_REWIND}/>
+          {this.isPlayingMode && !this.isPausierend ?
+            <button onClick={(event: UIEvent) => this.handlePause(event)}
+                    class="flex-content"
+                    title="Sprachausgabe pausieren"
+                    innerHTML={IMG_PAUSE}/>
+            : ""
           }
-          <div onClick={(event: UIEvent) => this.handleForeward(event)}
-               class="flex-content"
-               title={"1 Folie weiter"}
-               innerHTML={IMG_FOREWARD}/>
-          <div onClick={(event: UIEvent) => this.handleFastForeward(event)}
-               class="flex-content"
-               title="10 Folien weiter"
-               innerHTML={IMG_FASTFOREWARD}/>
-          <div onClick={(event: UIEvent) => this.handleEnd(event)}
-               class="flex-content"
-               title="Zur letzten Folie"
-               innerHTML={IMG_END}/>
+          {this.isPlayingMode && this.isPausierend ?
+            <button onClick={(event: UIEvent) => this.handlePause(event)}
+                    class="flex-content"
+                    title="Sprachausgabe fortsetzen"
+                    innerHTML={IMG_PLAY}/>
+            : ""
+          }
+          {this.isPlayingMode ?
+            <button onClick={(event: UIEvent) => this.handleStop(event)}
+                    class="flex-content"
+                    title="Sprachausgabe beenden"
+                    innerHTML={IMG_STOP}/>
+            :
+            <button onClick={(event: UIEvent) => this.handlePlay(event)}
+                    id="playbutton"
+                    class="flex-content"
+                    title="Vortrag beginnen lassen"
+                    innerHTML={IMG_PLAY}/>
+          }
+          <button onClick={(event: UIEvent) => this.handleForeward(event)}
+                  class="flex-content"
+                  title={"1 Folie weiter"}
+                  innerHTML={IMG_FOREWARD}/>
+          <button onClick={(event: UIEvent) => this.handleFastForeward(event)}
+                  class="flex-content"
+                  title="10 Folien weiter"
+                  innerHTML={IMG_FASTFOREWARD}/>
+          <button onClick={(event: UIEvent) => this.handleEnd(event)}
+                  class="flex-content"
+                  title="Zur letzten Folie"
+                  innerHTML={IMG_END}/>
           <div id="pagenum"
                title={this.printPageNum()}>
             {this.printPageNum()}

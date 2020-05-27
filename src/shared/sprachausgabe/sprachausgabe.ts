@@ -2,41 +2,73 @@ import {Logger} from "../logging/logger";
 import {Sprachauswahl} from "../stimmenauswahl/stimmenauswahl";
 import {Sprachsynthese} from "./sprachsynthese";
 
+export interface VorleserCallbacks {
+  onend?: () => void;
+  onstart?: () => void;
+  onpause?: () => void;
+  onresume?: () => void;
+  onerror?: () => void;
+}
 
 export class Sprachausgabe {
 
   sprachSynthese: Sprachsynthese;
   sprachauswahl: Sprachauswahl;
+  vorleserCallbacks: VorleserCallbacks;
 
-  constructor(sprachSynthese: Sprachsynthese, sprachauswahl: Sprachauswahl) {
+  constructor(sprachSynthese: Sprachsynthese, sprachauswahl: Sprachauswahl, vorleserCallbacks?: VorleserCallbacks) {
     this.sprachSynthese = sprachSynthese;
     this.sprachauswahl = sprachauswahl;
+    this.vorleserCallbacks = vorleserCallbacks;
     Logger.infoMessage("####constructor finished");
   }
 
   erzeugeVorleser(text: string): SpeechSynthesisUtterance {
-    Logger.infoMessage("erzeugeVorleser started");
     const vorleser: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text);
 
-    vorleser.onend = () => {
-      // this.speakerFinished.emit();
-      Logger.debugMessage("Vorlesen beendet");
-    }
+    if (this.vorleserCallbacks) {
+      vorleser.onend = () => {
+        Logger.debugMessage("Vorlesen beendet");
+        if (this.vorleserCallbacks.onend) {
+          this.vorleserCallbacks.onend();
+        }
+      }
 
-    vorleser.onstart = () => {
-      // this.speakerStarted.emit();
-      Logger.debugMessage("Vorlesen gestartet");
-    }
+      vorleser.onstart = () => {
+        Logger.debugMessage("Vorlesen gestartet");
+        if (this.vorleserCallbacks.onstart) {
+          this.vorleserCallbacks.onstart();
+        }
+      }
 
-    vorleser.onpause = () => {
-      // this.speakerPaused.emit();
-      Logger.debugMessage("Pause mit Vorlesen");
-    }
+      vorleser.onpause = () => {
+        Logger.debugMessage("Pause mit Vorlesen");
+        if (this.vorleserCallbacks.onpause) {
+          this.vorleserCallbacks.onpause();
+        }
+      }
 
-    vorleser.onerror = () => {
-      // this.speakerFailed.emit();
-      Logger.errorMessage("Fehler beim Vorlesen");
+      vorleser.onresume = () => {
+        Logger.debugMessage("Fortsetzen des Vorlesen");
+        if (this.vorleserCallbacks.onresume) {
+          this.vorleserCallbacks.onresume();
+        }
+      }
+
+      vorleser.onerror = () => {
+        Logger.errorMessage("Fehler beim Vorlesen");
+        if (this.vorleserCallbacks.onerror) {
+          this.vorleserCallbacks.onerror();
+        }
+      }
     }
+    this.initialisiereVorleserStimme(vorleser);
+
+    return vorleser;
+  }
+
+  initialisiereVorleserStimme(vorleser: SpeechSynthesisUtterance) {
+    Logger.infoMessage("erzeugeVorleser started");
 
     vorleser.pitch = this.sprachauswahl.getPitch();
     vorleser.rate = this.sprachauswahl.getRate();
@@ -47,14 +79,9 @@ export class Sprachausgabe {
     } else {
       vorleser.lang = "de-DE";
     }
-    return vorleser;
   }
 
   textVorlesen(zuLesenderText: string) {
-    // if (!this.stimme) {
-    //   this.stimme = this.getDefaultStimme();
-    //   Logger.infoMessage("set default voice to " + this.stimme);
-    // }
     if (zuLesenderText) {
       const texte: string[] = zuLesenderText.match(/(\S+\s){1,20}/g);
 
@@ -74,10 +101,21 @@ export class Sprachausgabe {
     }
   }
 
-  cancelSpeakingAndClearQueue(){
+  cancelSpeakingAndClearQueue(): void {
     this.sprachSynthese.getSynthese().cancel();
   }
 
+  pauseSpeakingFromQueue(): void {
+    this.sprachSynthese.getSynthese().pause();
+  }
+
+  resumeSpeakingFromQueue(): void {
+    this.sprachSynthese.getSynthese().resume();
+  }
+
+  isPaused(): boolean {
+    return this.sprachSynthese.getSynthese().paused;
+  }
 }
 
 

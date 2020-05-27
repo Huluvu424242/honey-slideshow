@@ -25,11 +25,11 @@ svg {
   box-shadow: 1px 1px blue;
 }
 
-.flex-content:hover {
-  flex:3;
-  border: 1px solid darkblue;
-  box-shadow: 2px 2px darkblue;
-}
+/*.flex-content:hover {*/
+/*  flex:3;*/
+/*  border: 1px solid darkblue;*/
+/*  box-shadow: 2px 2px darkblue;*/
+/*}*/
 
 .tag-content{
   border: 1px solid gray;
@@ -58,4 +58,8 @@ svg {
 
 .hr-unten {
   margin: 3px 0px 0px 1px;
+}
+
+button:disabled {
+  background-color: lightgray;
 }

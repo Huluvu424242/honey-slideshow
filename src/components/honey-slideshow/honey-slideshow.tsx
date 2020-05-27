@@ -222,52 +222,49 @@ export class HoneySlideshow {
         <hr class={"hr-oben"}/>
         <div id={"slide-control"} class={"flex-container"}>
           <button onClick={(event: UIEvent) => this.handleStart(event)}
+                  disabled={this.slide < 1}
                   class="flex-content"
                   title={"Zur ersten Folie"}
                   innerHTML={IMG_START}/>
           <button onClick={(event: UIEvent) => this.handleFastRewind(event)}
+                  disabled={(this.slide - 10) < 0}
                   class="flex-content"
                   title={"10 Folien zurück"}
                   innerHTML={IMG_FASTREWIND}/>
           <button onClick={(event: UIEvent) => this.handleRewind(event)}
+                  disabled={(this.slide - 1) < 0}
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
-          {this.isPlayingMode && !this.isPausierend ?
-            <button onClick={(event: UIEvent) => this.handlePause(event)}
-                    class="flex-content"
-                    title="Sprachausgabe pausieren"
-                    innerHTML={IMG_PAUSE}/>
-            : ""
-          }
-          {this.isPlayingMode && this.isPausierend ?
-            <button onClick={(event: UIEvent) => this.handlePause(event)}
-                    class="flex-content"
-                    title="Sprachausgabe fortsetzen"
-                    innerHTML={IMG_PLAY}/>
-            : ""
-          }
-          {this.isPlayingMode ?
-            <button onClick={(event: UIEvent) => this.handleStop(event)}
-                    class="flex-content"
-                    title="Sprachausgabe beenden"
-                    innerHTML={IMG_STOP}/>
-            :
-            <button onClick={(event: UIEvent) => this.handlePlay(event)}
-                    id="playbutton"
-                    class="flex-content"
-                    title="Vortrag beginnen lassen"
-                    innerHTML={IMG_PLAY}/>
-          }
+          <button
+            onClick={(event: UIEvent) => this.isPlayingMode && this.isPausierend ? this.handlePause(event) : this.handlePlay(event)}
+            disabled={this.isPlayingMode && !this.isPausierend}
+            id="playbutton"
+            class="flex-content"
+            title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}
+            innerHTML={IMG_PLAY}/>
+          <button onClick={(event: UIEvent) => this.handlePause(event)}
+                  disabled={!this.isPlayingMode || this.isPausierend}
+                  class="flex-content"
+                  title="Sprachausgabe pausieren"
+                  innerHTML={IMG_PAUSE}/>
+          <button onClick={(event: UIEvent) => this.handleStop(event)}
+                  disabled={!this.isPlayingMode}
+                  class="flex-content"
+                  title="Sprachausgabe beenden"
+                  innerHTML={IMG_STOP}/>
           <button onClick={(event: UIEvent) => this.handleForeward(event)}
+                  disabled={(this.slide + 1) > (this.slides.length - 1)}
                   class="flex-content"
                   title={"1 Folie weiter"}
                   innerHTML={IMG_FOREWARD}/>
           <button onClick={(event: UIEvent) => this.handleFastForeward(event)}
+                  disabled={(this.slide + 10) > (this.slides.length - 1)}
                   class="flex-content"
                   title="10 Folien weiter"
                   innerHTML={IMG_FASTFOREWARD}/>
           <button onClick={(event: UIEvent) => this.handleEnd(event)}
+                  disabled={this.slide >= (this.slides.length - 1)}
                   class="flex-content"
                   title="Zur letzten Folie"
                   innerHTML={IMG_END}/>

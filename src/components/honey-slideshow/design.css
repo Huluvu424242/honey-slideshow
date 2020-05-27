@@ -25,11 +25,11 @@ svg {
   box-shadow: 1px 1px blue;
 }
 
-.flex-content:hover {
-  flex:3;
-  border: 1px solid darkblue;
-  box-shadow: 2px 2px darkblue;
-}
+/*.flex-content:hover {*/
+/*  flex:3;*/
+/*  border: 1px solid darkblue;*/
+/*  box-shadow: 2px 2px darkblue;*/
+/*}*/
 
 .tag-content{
   border: 1px solid gray;

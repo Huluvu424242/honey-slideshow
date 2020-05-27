@@ -133,3 +133,16 @@ export const IMG_END: string = '<svg version="1.1" viewBox="0.0 0.0 960.0 720.0"
   '          d="m822.78174 0l142.45667 0l0 720.0l-142.45667 0z" fill-rule="evenodd"/>\n' +
   '  </g>\n' +
   '</svg>\n';
+
+export const IMG_STOP: string = '<svg version="1.1" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square"\n' +
+  '     stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">\n' +
+  '  <clipPath id="p.0">\n' +
+  '    <path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/>\n' +
+  '  </clipPath>\n' +
+  '  <g clip-path="url(#p.0)">\n' +
+  '    <path fill="#000000" fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/>\n' +
+  '    <path fill="#000000" d="m198.312 1.2073491l544.9449 0l0 720.0l-544.9449 0z" fill-rule="evenodd"/>\n' +
+  '    <path stroke="#000000" stroke-width="1.0" stroke-linejoin="round" stroke-linecap="butt"\n' +
+  '          d="m198.312 1.2073491l544.9449 0l0 720.0l-544.9449 0z" fill-rule="evenodd"/>\n' +
+  '  </g>\n' +
+  '</svg>';

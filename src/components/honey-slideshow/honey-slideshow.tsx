@@ -35,7 +35,8 @@ export class HoneySlideshow {
   @Prop() tags: Array<string>;
 
   @State() slide: number;
-  @State() isPauseButtonShown: boolean;
+  @State() isPlayingMode: boolean;
+  @State() isPausierend: boolean;
 
   sprachauswahl: Sprachauswahl;
 
@@ -55,19 +56,23 @@ export class HoneySlideshow {
   getVorleserCallbacks(): VorleserCallbacks {
     const callbacks: VorleserCallbacks = {}
     callbacks.onstart = () => {
-      this.isPauseButtonShown = true;
+      this.isPlayingMode = true;
+      this.isPausierend = false;
       Logger.debugMessage("onstart");
     }
     callbacks.onpause = () => {
-      this.isPauseButtonShown = true;
+      this.isPlayingMode = true;
+      this.isPausierend = true;
       Logger.debugMessage("onpause");
     }
     callbacks.onresume = () => {
-      this.isPauseButtonShown = true;
+      this.isPlayingMode = true;
+      this.isPausierend = false;
       Logger.debugMessage("onresume");
     }
     callbacks.onend = () => {
-      this.isPauseButtonShown = false;
+      this.isPlayingMode = false;
+      this.isPausierend = false;
       Logger.debugMessage("onend");
     }
 
@@ -81,7 +86,8 @@ export class HoneySlideshow {
     this.sprachauswahl = new Sprachauswahl(sprachsynthese);
     this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl, this.getVorleserCallbacks());
     this.slide = 0;
-    this.isPauseButtonShown = false;
+    this.isPlayingMode = false;
+    this.isPausierend = false;
     this.loadSlideContent();
   }
 
@@ -227,21 +233,21 @@ export class HoneySlideshow {
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
-          {this.isPauseButtonShown && !this.sprachausgabe.isPaused() ?
+          {this.isPlayingMode && !this.isPausierend ?
             <button onClick={(event: UIEvent) => this.handlePause(event)}
                     class="flex-content"
                     title="Sprachausgabe pausieren"
                     innerHTML={IMG_PAUSE}/>
             : ""
           }
-          {this.isPauseButtonShown && this.sprachausgabe.isPaused() ?
+          {this.isPlayingMode && this.isPausierend ?
             <button onClick={(event: UIEvent) => this.handlePause(event)}
                     class="flex-content"
                     title="Sprachausgabe fortsetzen"
                     innerHTML={IMG_PLAY}/>
             : ""
           }
-          {this.isPauseButtonShown ?
+          {this.isPlayingMode ?
             <button onClick={(event: UIEvent) => this.handleStop(event)}
                     class="flex-content"
                     title="Sprachausgabe beenden"

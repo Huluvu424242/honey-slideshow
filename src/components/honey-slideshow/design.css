@@ -59,3 +59,7 @@ svg {
 .hr-unten {
   margin: 3px 0px 0px 1px;
 }
+
+button:disabled {
+  background-color: lightgray;
+}

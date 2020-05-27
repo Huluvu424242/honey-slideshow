@@ -233,32 +233,21 @@ export class HoneySlideshow {
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
-          {this.isPlayingMode && !this.isPausierend ?
-            <button onClick={(event: UIEvent) => this.handlePause(event)}
-                    class="flex-content"
-                    title="Sprachausgabe pausieren"
-                    innerHTML={IMG_PAUSE}/>
-            : ""
-          }
-          {this.isPlayingMode && this.isPausierend ?
-            <button onClick={(event: UIEvent) => this.handlePause(event)}
-                    class="flex-content"
-                    title="Sprachausgabe fortsetzen"
-                    innerHTML={IMG_PLAY}/>
-            : ""
-          }
-          {this.isPlayingMode ?
-            <button onClick={(event: UIEvent) => this.handleStop(event)}
-                    class="flex-content"
-                    title="Sprachausgabe beenden"
-                    innerHTML={IMG_STOP}/>
-            :
-            <button onClick={(event: UIEvent) => this.handlePlay(event)}
-                    id="playbutton"
-                    class="flex-content"
-                    title="Vortrag beginnen lassen"
-                    innerHTML={IMG_PLAY}/>
-          }
+          <button
+            onClick={(event: UIEvent) => this.isPlayingMode && this.isPausierend ? this.handlePause(event) : this.handlePlay(event)}
+            id="playbutton"
+            class="flex-content"
+            title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}
+            innerHTML={IMG_PLAY}/>
+          <button onClick={(event: UIEvent) => this.handlePause(event)}
+                  class="flex-content"
+                  title="Sprachausgabe pausieren"
+                  innerHTML={IMG_PAUSE}/>
+          <button onClick={(event: UIEvent) => this.handleStop(event)}
+                  disabled={!this.isPlayingMode}
+                  class="flex-content"
+                  title="Sprachausgabe beenden"
+                  innerHTML={IMG_STOP}/>
           <button onClick={(event: UIEvent) => this.handleForeward(event)}
                   class="flex-content"
                   title={"1 Folie weiter"}

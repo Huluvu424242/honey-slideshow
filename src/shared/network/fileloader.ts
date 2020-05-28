@@ -5,8 +5,12 @@ export class Fileloader {
 
   url: URL;
 
-  constructor(url: URL) {
-    this.url = url;
+  constructor(fileURL: URL) {
+    this.url = fileURL;
+  }
+
+  public static of(fileURL: string) {
+    return new Fileloader(new URL(fileURL));
   }
 
   public getFileContent(): Subject<string> {

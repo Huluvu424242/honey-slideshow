@@ -16,21 +16,9 @@
 
 <h1>Beispiel zur Nutzung der honey-slideshow Komponente</h1>
 
-<honey-slideshow id="slideshow1">
+<honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
 
   <h2 slot="title"> Titel der Präsentation</h2>
-
-  <script>
-    // <!--
-    // baseurl: URL zum Downloadverzeichnis in dem alle Slides und Texte der Präsentation abliegen
-    // slides: Namen der Filenamen. Die Komponente ergänzt automatisch die Extension .md für die Folien und .txt für die Beschreibungstexte
-    // -->
-    const slideshow = document.querySelector('#slideshow1');
-    slideshow.baseurl = "https://funthomas424242.github.io/foile-pile/ux/designrules/";
-    slideshow.slides = ["slide1", "slide2", "slide3"];
-    slideshow.tags = ["tag1", "tag2", "tag3", "tag4"];
-  </script>
-
 
   <div id="slidewin" slot="slide-area" class="slides meine tollen styles sind dabei"></div>
 

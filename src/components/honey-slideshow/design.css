@@ -38,6 +38,8 @@ svg {
   box-shadow: 1px 1px gray;
   color: black;
   text-shadow: 1px 1px 3px black;
+  margin: 0px 2px 0px 2px;
+  padding: 2px 2px 2px 2px;
 }
 
 

@@ -31,10 +31,11 @@ export class HoneySlideshow {
   @Element() el: HTMLElement;
 
   @Prop() baseurl: string;
-  @Prop() slides: Array<string>;
-  @Prop() tags: Array<string>;
 
+  @State() tags: Array<string>;
+  @State() slides: Array<string>;
   @State() slide: number;
+
   @State() isPlayingMode: boolean;
   @State() isPausierend: boolean;
 
@@ -43,14 +44,18 @@ export class HoneySlideshow {
   sprachausgabe: Sprachausgabe;
 
 
+  getFileURLexternalForm(fileName: string): string {
+    if (this.baseurl.endsWith("/")) {
+      return this.baseurl + fileName;
+    } else {
+      return this.baseurl + "/" + fileName;
+    }
+  }
+
   getCurrentSlideURLExternalForm(): string {
     const slideNr: number = this.slide;
     const slideFileName: string = this.slides[slideNr];
-    if (this.baseurl.endsWith("/")) {
-      return this.baseurl + slideFileName;
-    } else {
-      return this.baseurl + "/" + slideFileName;
-    }
+    return this.getFileURLexternalForm(slideFileName);
   }
 
   getVorleserCallbacks(): VorleserCallbacks {
@@ -85,10 +90,12 @@ export class HoneySlideshow {
     const sprachsynthese: Sprachsynthese = new Sprachsynthese();
     this.sprachauswahl = new Sprachauswahl(sprachsynthese);
     this.sprachausgabe = new Sprachausgabe(sprachsynthese, this.sprachauswahl, this.getVorleserCallbacks());
-    this.slide = 0;
     this.isPlayingMode = false;
     this.isPausierend = false;
-    this.loadSlideContent();
+    this.slide = 0;
+    this.slides = [];
+    this.tags = [];
+    this.loadMetadata();
   }
 
   componentDidLoad() {
@@ -112,6 +119,17 @@ export class HoneySlideshow {
     this.loadAudioContent();
   }
 
+  loadMetadata() {
+    const indexFile = this.getFileURLexternalForm("0index.txt");
+    Fileloader.of(indexFile).getFileContent().subscribe((indexContent: string) => {
+      this.slides = indexContent.split(',').map(value => value.trim());
+      this.loadSlideContent();
+    });
+    const tagsFile = this.getFileURLexternalForm("0tags.txt");
+    Fileloader.of(tagsFile).getFileContent().subscribe((tagsContent: string) => {
+      this.tags = tagsContent.split(',').map(value => value.trim());
+    });
+  }
 
   loadAudioContent() {
     this.sprachausgabe.cancelSpeakingAndClearQueue();

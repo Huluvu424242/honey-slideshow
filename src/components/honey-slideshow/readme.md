@@ -5,11 +5,9 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type       | Default     |
-| --------- | --------- | ----------- | ---------- | ----------- |
-| `baseurl` | `baseurl` |             | `string`   | `undefined` |
-| `slides`  | --        |             | `string[]` | `undefined` |
-| `tags`    | --        |             | `string[]` | `undefined` |
+| Property  | Attribute | Description | Type     | Default     |
+| --------- | --------- | ----------- | -------- | ----------- |
+| `baseurl` | `baseurl` |             | `string` | `undefined` |
 
 
 ----------------------------------------------

@@ -2,8 +2,7 @@
 
 # honey-slideshow
 
-This component realize an speaker symbol button. Its can read a text of
-DOM elements referenced by an list of ids via voice.
+This component realize an slide show with speaker support by browser speaker api.
 
 ## installation
 
@@ -34,9 +33,16 @@ To the [demo site](https://funthomas424242.github.io/honey-slideshow/index.html)
 ```
 -->
 ```html
-<honey-slideshow textids="text1,text2"></honey-slideshow>
-<p id="text1">fizz fizz fizz fizz</p>
-<p id="text2">buzz buzz buzz buzz</p>
+
+<honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
+
+  <h2 slot="title"> Titel der Präsentation</h2>
+
+  <!-- Dieser Slot dient nur dazu das Styling der Folien von außen per CSS beeinflussen zu können -->
+  <div id="slidewin" slot="slide-area" class="slides meine tollen styles sind dabei"></div>
+
+</honey-slideshow>
+
 ```
 To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
@@ -50,61 +56,11 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
-### v0.0.13 unpublished
-
-* initializing of voices fixed
-
-### v0.0.12 published at 2020-02-29
-
-* docu and demo urls fixed
-
-### v0.0.11 published at 2020-02-29
-
-* support of voice parameter
-
-### v0.0.10 published at 2020-02-28
-
-* support for large texts added
-* defined css variables supported
-* css ::part supported for speakerpane 
-* svg embed - no extra assets needed
-* sizeable via css
-* color of background, stroke and fill css styleable 
-* ident property computed from id attribute or random if absent 
-* example added
-* stencil/core removed from bundle again (no storybook support at now)
- 
-### v0.0.9 published at 2020-02-23
-
-* stencil/core added to bundle
-
-### v0.0.8
-
-* readme updated
-* icon color blue
-* background color attribute added
-
-### v0.0.7
-
-* first working version with icon.
-* support of id list of speaker texts.
-
-### v0.0.2 - v0.0.6 
-
-* try to publish assets with component to npmjs.com but failed.
+### v0.0.2 unpublished
 
 ### v0.0.1
 
-* setup project based at https://github.com/ionic-team/stencil-component-starter rating-stencil-component
-
-## internet links
-
-* https://auth0.com/blog/creating-web-components-with-stencil/
-* https://www.twilio.com/blog/2018/02/creating-and-publishing-web-components-with-stencil.html
-* https://stenciljs.com/docs/introduction
-* https://css-tricks.com/styling-a-web-component/
-* https://meowni.ca/posts/part-theme-explainer/
-
+* setup project based at https://github.com/FunThomas424242/honey-speech
 
 ## warranty
 

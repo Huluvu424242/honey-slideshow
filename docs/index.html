@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Honey Slide Show Demo</title>
 
-<!--  <script type="module"-->
-<!--          src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.12/dist/honey-slideshow/honey-slideshow.js'></script>-->
-    <script type="module" src='../dist/honey-slideshow/honey-slideshow.js'></script>
+  <script type="module"
+          src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.1/dist/honey-slideshow/honey-slideshow.js'></script>
+<!--    <script type="module" src='../dist/honey-slideshow/honey-slideshow.js'></script>-->
 
   <!-- include styles from src/global -->
   <link rel="stylesheet" href="./demo.css">
@@ -17,21 +17,9 @@
 
 <h1>Beispiel zur Nutzung der honey-slideshow Komponente</h1>
 
-<honey-slideshow id="slideshow1">
+<honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
 
   <h2 slot="title"> Titel der Präsentation</h2>
-
-  <script>
-    // <!--
-    // baseurl: URL zum Downloadverzeichnis in dem alle Slides und Texte der Präsentation abliegen
-    // slides: Namen der Filenamen. Die Komponente ergänzt automatisch die Extension .md für die Folien und .txt für die Beschreibungstexte
-    // -->
-    const slideshow = document.querySelector('#slideshow1');
-    slideshow.baseurl = "https://funthomas424242.github.io/foile-pile/test/unittest/";
-    slideshow.slides = ["slide1", "slide2", "ende"];
-    slideshow.tags = ["tag1", "tag2", "tag3", "tag4"];
-  </script>
-
 
   <div id="slidewin" slot="slide-area" class="slides meine tollen styles sind dabei"></div>
 

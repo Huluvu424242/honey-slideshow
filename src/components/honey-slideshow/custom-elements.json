@@ -1,5 +1,5 @@
 {
-  "timestamp": "2020-05-19T21:40:16",
+  "timestamp": "2020-05-30T21:39:08",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.8.11",
@@ -26,36 +26,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "slides",
-          "type": "string[]",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string[]"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "tags",
-          "type": "string[]",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string[]"
             }
           ],
           "optional": false,

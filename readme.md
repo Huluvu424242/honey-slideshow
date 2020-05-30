@@ -2,8 +2,7 @@
 
 # honey-slideshow
 
-This component realize an speaker symbol button. Its can read a text of
-DOM elements referenced by an list of ids via voice.
+This component realize an slide show with speaker support by browser speaker api.
 
 ## installation
 

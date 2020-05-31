@@ -22,6 +22,20 @@ jobs:
       - run: npm test
         env:
           CI: true
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm publish
 
   release:
     name: Release
@@ -29,7 +43,7 @@ jobs:
     steps:
       - name: Github Release
         uses: fnkr/github-action-ghr@v1.3
-        if: startsWith(github.ref, 'refs/#10/')
+        if: startsWith(github.ref, 'refs/*/')
         env:
           GHR_COMPRESS: xz
           GHR_PATH: dist/

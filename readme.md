@@ -45,7 +45,7 @@ npm install --save honey-slideshow
 ```
 Structure of [demo project](https://github.com/FunThomas424242/foile-pile/tree/master/ux/designrules).
 
-[![Folderstructure](./docs/img/FolderStructure.png)]
+![Folderstructure](./docs/img/FolderStructure.png)
 
 To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 

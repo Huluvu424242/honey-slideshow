@@ -94,17 +94,3 @@ Generell
 ### Custom Elements
 
 * [Can I use with browsers?](https://caniuse.com/#feat=mdn-api_window_customelements)
-
-### CSS Custom Properties
-
-* [Can I use with browsers?](https://caniuse.com/#search=css%20custom%20properties)
-
-### Shadow Parts
-
-Firefox
-
-Maybe you must via about:config set the layout.css.shadow-parts.enabled to true.
-
-Generell 
-
-* [Can I use with browsers?](https://caniuse.com/#feat=mdn-css_selectors_part)

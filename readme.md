@@ -13,10 +13,9 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.9/dist/honey-slideshow/honey-slideshow.js'>
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.9/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
-To the [demo site](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 [Vision of API (under construction)](src/components/honey-slideshow/readme.md)
 
@@ -44,6 +43,10 @@ To the [demo site](https://funthomas424242.github.io/honey-slideshow/index.html)
 </honey-slideshow>
 
 ```
+Structure of [demo project](https://github.com/FunThomas424242/foile-pile/tree/master/ux/designrules).
+
+[![Folderstructure](./docs/img/FolderStructure.png)]
+
 To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## become an supporter
@@ -74,8 +77,6 @@ MIT License
 
 * [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 * [Custom Elements](https://developer.mozilla.org/en-US/docs/Web/API/Window/customElements)
-* [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
-* [Shadow Parts](https://developer.mozilla.org/de/docs/Web/CSS/::part)
 
 
 ## browser support

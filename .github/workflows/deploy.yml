@@ -1,5 +1,4 @@
-name: Build and release on push
-
+name: Upload to GitHub
 on:
   push:
 #    branches:
@@ -7,42 +6,20 @@ on:
 #      - '!release/**-snapshot'
 
 jobs:
-
-  deploy:
+  upload_job:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
+    name: Upload
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        # Setup node first
+      - name: Setup node
         uses: actions/setup-node@v1
+      - name: Upload to GitHub
+        uses: LasyIsLazy/github-upload-action@v0.0.1
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run build --if-present
-      - run: npm test
-        env:
-          CI: true
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-#      - run: npm login -u ${{OWNER}} -p ${{secrets.GITHUB_TOKEN}}
-#      - run: npm publish --access=public
-
-#  release:
-#    name: Release
-#    runs-on: ubuntu-latest
-#    steps:
-      - name: Github Release
-        uses: fnkr/github-action-ghr@v1.3
-#        if: startsWith(github.ref, 'refs/*/')
-        env:
-#          GHR_COMPRESS: xz
-          GHR_PATH: dist/
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          file-path: dist/
+          username: funthomas424242
+          repo: honey-slideshow
+#          remote-dir: remoteDir

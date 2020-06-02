@@ -1,10 +1,14 @@
 name: Build and release on push
 
-on: [push]
+on:
+  push:
+#    branches:
+#      - 'release/**'
+#      - '!release/**-snapshot'
 
 jobs:
-  build:
 
+  deploy:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,29 +26,21 @@ jobs:
       - run: npm test
         env:
           CI: true
-  deploy:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm login -u ${{OWNER}} -p ${{secrets.GITHUB_TOKEN}}
-      - run: npm publish
+#      - run: npm login -u ${{OWNER}} -p ${{secrets.GITHUB_TOKEN}}
+#      - run: npm publish --access=public
 
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
+#  release:
+#    name: Release
+#    runs-on: ubuntu-latest
+#    steps:
       - name: Github Release
         uses: fnkr/github-action-ghr@v1.3
-        if: startsWith(github.ref, 'refs/*/')
+#        if: startsWith(github.ref, 'refs/*/')
         env:
           GHR_COMPRESS: xz
           GHR_PATH: dist/

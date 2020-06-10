@@ -296,7 +296,9 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          <div>Quelle: {this.getCurrentSlideURLExternalForm()}</div>
+          <div>Quellen: <a href={this.getCurrentSlideURLExternalForm()+".md"} target={"_blank"} class={"quelle"}>{"Folie"}</a>
+            <a href={this.getCurrentSlideURLExternalForm()+".txt"} target={"_blank"} class={"quelle"}>{"Audio"}</a>
+          </div>
           <slot name={"slide-area"}/>
         </main>
       </host>

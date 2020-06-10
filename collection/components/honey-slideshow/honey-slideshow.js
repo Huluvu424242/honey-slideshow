@@ -56,6 +56,9 @@ export class HoneySlideshow {
         this.slides = [];
         this.tags = [];
         this.loadMetadata();
+        marked.setOptions({
+            baseUrl: this.baseurl
+        });
     }
     componentDidLoad() {
         Logger.debugMessage("componentDidLoad");
@@ -187,8 +190,9 @@ export class HoneySlideshow {
             h("hr", { class: "hr-unten" }),
             h("main", null,
                 h("div", null,
-                    "Quelle: ",
-                    this.getCurrentSlideURLExternalForm()),
+                    "Quellen: ",
+                    h("a", { href: this.getCurrentSlideURLExternalForm() + ".md", target: "_blank", class: "quelle" }, "Folie"),
+                    h("a", { href: this.getCurrentSlideURLExternalForm() + ".txt", target: "_blank", class: "quelle" }, "Audio")),
                 h("slot", { name: "slide-area" }))));
     }
     static get is() { return "honey-slideshow"; }

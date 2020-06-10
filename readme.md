@@ -13,7 +13,7 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.1/dist/honey-slideshow/honey-slideshow.js">
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.2/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
 

@@ -13,7 +13,7 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.1/dist/honey-slideshow/honey-slideshow.js">
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.2/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
 
@@ -59,7 +59,10 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
-### v0.0.2 unpublished
+### v0.0.2 
+
+* [issue#30](https://github.com/FunThomas424242/honey-slideshow/issues/30) foile link added
+* [issue#28](https://github.com/FunThomas424242/honey-slideshow/issues/28) baseurl for foile sources added
 
 ### v0.0.1
 

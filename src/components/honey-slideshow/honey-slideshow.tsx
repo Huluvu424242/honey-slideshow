@@ -96,6 +96,9 @@ export class HoneySlideshow {
     this.slides = [];
     this.tags = [];
     this.loadMetadata();
+    marked.setOptions({
+      baseUrl: this.baseurl
+    });
   }
 
   componentDidLoad() {

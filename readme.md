@@ -59,6 +59,11 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
+### v0.0.3
+
+* upgrade to stencil 1.14.0
+* [issue#33](https://github.com/FunThomas424242/honey-slideshow/issues/33) clean up damaged repo
+
 ### v0.0.2 
 
 * [issue#30](https://github.com/FunThomas424242/honey-slideshow/issues/30) foile link added

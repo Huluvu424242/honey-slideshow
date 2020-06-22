@@ -1,13 +1,13 @@
 {
-  "timestamp": "2020-06-10T20:38:11",
+  "timestamp": "2020-06-22T21:24:51",
   "compiler": {
     "name": "@stencil/core",
-    "version": "1.8.11",
-    "typescriptVersion": "3.8.2"
+    "version": "1.14.0",
+    "typescriptVersion": "3.9.3"
   },
   "components": [
     {
-      "filePath": "src\\components\\honey-slideshow\\honey-slideshow.tsx",
+      "filePath": "./src/components/honey-slideshow/honey-slideshow.tsx",
       "encapsulation": "shadow",
       "tag": "honey-slideshow",
       "readme": "# honey-slideshow\n",
@@ -34,8 +34,10 @@
       ],
       "methods": [],
       "events": [],
+      "listeners": [],
       "styles": [],
       "slots": [],
+      "parts": [],
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {}

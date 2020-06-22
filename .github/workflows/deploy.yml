@@ -1,7 +1,8 @@
 name: Upload to GitHub
 on:
   push:
-#    branches:
+    branches:
+      - '**/**'
 #      - 'release/**'
 #      - '!release/**-snapshot'
 #

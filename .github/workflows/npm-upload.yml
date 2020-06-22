@@ -1,4 +1,4 @@
-name: npm-publish
+name: Upload to npmjs.com
 on:
   push:
     branches:

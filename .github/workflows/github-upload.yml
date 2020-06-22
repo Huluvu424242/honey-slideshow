@@ -1,6 +1,7 @@
-name: Node.js Package
-on:
-  push:
+name: Upload to Github
+
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -1,0 +1,28 @@
+#name: Upload to GitHub
+#on:
+#  push:
+#    branches:
+#      - 'release/**'
+#      - '!release/**-snapshot'
+#
+#jobs:
+#  upload_job:
+#    runs-on: ubuntu-latest
+#    name: Upload
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        # Setup node first
+#      - name: Setup node
+#        uses: actions/setup-node@v1
+#      - run: npm install
+#      - run: npm run build --if-present
+#      - run: npm test
+#      - name: Upload to GitHub
+#        uses: LasyIsLazy/github-upload-action@v0.0.1
+#        with:
+#          access-token: ${{ secrets.GITHUB_TOKEN }}
+#          file-path: dist/
+#          username: funthomas424242
+#          repo: honey-slideshow
+##          remote-dir: remoteDir

@@ -16,9 +16,9 @@ jobs:
         # Setup node first
       - name: Setup node and build
         uses: actions/setup-node@v1
-        - run: npm install
-        - run: npm run build --if-present
-        - run: npm test
+      - run: npm install
+      - run: npm run build --if-present
+      - run: npm test
         # upload
       - name: Upload to GitHub
         - run: echo "@huluvu424242:registry=https://npm.pkg.github.com" >> .npmrc

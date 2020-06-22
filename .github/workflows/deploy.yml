@@ -21,6 +21,7 @@ jobs:
       - run: npm test
         # upload
       - name: Upload to GitHub
+        uses: actions/setup-node@v1
       - run: echo "@huluvu424242:registry=https://npm.pkg.github.com" >> .npmrc
       - run: npm login --registry=https://npm.pkg.github.com/
       - run: npm publish

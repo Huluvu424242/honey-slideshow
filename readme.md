@@ -13,7 +13,7 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.2/dist/honey-slideshow/honey-slideshow.js">
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.3/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
 
@@ -61,7 +61,9 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ### v0.0.3
 
+* build with nodejs 14.1.0
 * upgrade to stencil 1.14.0
+* [issue#35](https://github.com/FunThomas424242/honey-slideshow/issues/35) diasble autoplay
 * [issue#33](https://github.com/FunThomas424242/honey-slideshow/issues/33) clean up damaged repo
 
 ### v0.0.2 

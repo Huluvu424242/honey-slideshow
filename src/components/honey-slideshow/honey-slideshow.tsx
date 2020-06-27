@@ -101,18 +101,6 @@ export class HoneySlideshow {
     });
   }
 
-  componentDidLoad() {
-    Logger.debugMessage("componentDidLoad");
-    const element: HTMLElement = this.el;
-    const playButton: HTMLButtonElement = element.shadowRoot.querySelector<HTMLButtonElement>("#playbutton") as HTMLButtonElement;
-    /* Der Klick funktioniert nur wenn auf der Seite schon eine menschliche Interaktion stattfand.
-     * Chrome ab 71
-     * Firefox noch nicht -> wirkt immer :)
-     * Quelle: https://www.chromestatus.com/feature/5687444770914304
-     */
-    playButton.click();
-  }
-
   printPageNum(): string {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
   }

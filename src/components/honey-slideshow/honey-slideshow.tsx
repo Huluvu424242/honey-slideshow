@@ -13,7 +13,7 @@ import {
 import {Sprachausgabe, VorleserCallbacks} from "../../shared/sprachausgabe/sprachausgabe";
 import {Sprachauswahl} from "../../shared/stimmenauswahl/stimmenauswahl";
 import {Logger} from "../../shared/logging/logger";
-import {Fileloader} from "../../shared/network/fileloader";
+import {Fileloader, ResponseInfo} from "../../shared/network/fileloader";
 import marked from "marked";
 import {IonicSafeString} from "@ionic/core";
 import {Sprachsynthese} from "../../shared/sprachausgabe/sprachsynthese";
@@ -112,13 +112,13 @@ export class HoneySlideshow {
 
   loadMetadata() {
     const indexFile = this.getFileURLexternalForm("0index.txt");
-    Fileloader.of(indexFile).getFileContent().subscribe((indexContent: string) => {
-      this.slides = indexContent.split(',').map(value => value.trim());
+    Fileloader.of(indexFile).loadFile().subscribe((indexInfo: ResponseInfo) => {
+      this.slides = indexInfo.content.split(',').map(value => value.trim());
       this.loadSlideContent();
     });
     const tagsFile = this.getFileURLexternalForm("0tags.txt");
-    Fileloader.of(tagsFile).getFileContent().subscribe((tagsContent: string) => {
-      this.tags = tagsContent.split(',').map(value => value.trim());
+    Fileloader.of(tagsFile).loadFile().subscribe((tagsInfo: ResponseInfo) => {
+      this.tags = tagsInfo.content.split(',').map(value => value.trim());
     });
   }
 
@@ -128,8 +128,16 @@ export class HoneySlideshow {
     const audioURL: URL = new URL(audioFileName);
     Logger.infoMessage("audioURL: " + audioURL);
     const audioLoader: Fileloader = new Fileloader(audioURL);
-    audioLoader.getFileContent().subscribe(audioContent => {
-      this.sprachausgabe.textVorlesen(audioContent);
+    audioLoader.loadFile().subscribe((audioInfo: ResponseInfo) => {
+      if( audioInfo.status === 200) {
+        if( audioInfo.content.length < 2){
+          this.sprachausgabe.textVorlesen("Diese Folie besitzt leider keine Audiounterstützung.");
+        }else {
+          this.sprachausgabe.textVorlesen(audioInfo.content);
+        }
+      }else{
+        this.sprachausgabe.textVorlesen("Die Sprachdatei konnte nicht geladen werden.");
+      }
     });
   }
 
@@ -138,10 +146,10 @@ export class HoneySlideshow {
     const slideURL: URL = new URL(slideFileName);
     Logger.infoMessage("slideURL: " + slideURL);
     const slideLoader: Fileloader = new Fileloader(slideURL);
-    slideLoader.getFileContent().subscribe(content => {
-      Logger.infoMessage("MD Inhalt:\n" + content);
+    slideLoader.loadFile().subscribe((responseInfo: ResponseInfo) => {
+      Logger.infoMessage("MD Inhalt:\n" + responseInfo.content);
       const element = document.getElementById("slidewin");
-      const htmlContent = marked(content);
+      const htmlContent = marked(responseInfo.content);
       const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
       element.innerHTML = sanifiedHtmlContent;
     });

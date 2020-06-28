@@ -6,8 +6,10 @@
   <title>Honey Slide Show Demo</title>
 
   <script type="module"
-          src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.3/dist/honey-slideshow/honey-slideshow.js'></script>
+          src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.3/dist/honey-slideshow/honey-slideshow.esm.js'></script>
 <!--    <script type="module" src='../dist/honey-slideshow/honey-slideshow.js'></script>-->
+  <script nomodule
+          src='https://unpkg.com/@huluvu424242/honey-slideshow@0.0.3/dist/honey-slideshow/honey-slideshow.js'></script>
 
   <!-- include styles from src/global -->
   <link rel="stylesheet" href="./demo.css">
@@ -17,9 +19,9 @@
 
 <h1>Beispiel zur Nutzung der honey-slideshow Komponente</h1>
 
-<honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
+<honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/evaluationen/community-tools/">
 
-  <h2 slot="title"> Titel der Präsentation</h2>
+  <h2 slot="title">Evaluation von Community Tools</h2>
 
   <div id="slidewin" slot="slide-area" class="slides meine tollen styles sind dabei"></div>
 

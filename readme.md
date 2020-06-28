@@ -59,19 +59,19 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
-### v0.0.3
+### v0.0.3 at 2020-06-27
 
 * build with nodejs 14.1.0
 * upgrade to stencil 1.14.0
 * [issue#35](https://github.com/FunThomas424242/honey-slideshow/issues/35) diasble autoplay
 * [issue#33](https://github.com/FunThomas424242/honey-slideshow/issues/33) clean up damaged repo
 
-### v0.0.2 
+### v0.0.2 at 2020-06-10
 
 * [issue#30](https://github.com/FunThomas424242/honey-slideshow/issues/30) foile link added
 * [issue#28](https://github.com/FunThomas424242/honey-slideshow/issues/28) baseurl for foile sources added
 
-### v0.0.1
+### v0.0.1 at 2020-05-31
 
 * setup project based at https://github.com/FunThomas424242/honey-speech
 

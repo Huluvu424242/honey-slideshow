@@ -7,13 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy to Bintray
+      - name: Deploy to Github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm i
           npm run build
           npm config set @huluvu424242:registry https://npm.pkg.github.com/
+          npm login --registry=https://npm.pkg.github.com/
           npm publish  --access=public
 
 #      - uses: actions/setup-node@v1

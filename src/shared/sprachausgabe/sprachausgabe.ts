@@ -83,7 +83,7 @@ export class Sprachausgabe {
 
   textVorlesen(zuLesenderText: string) {
     if (zuLesenderText) {
-      const texte: string[] = zuLesenderText.match(/(\S+\s){1,20}/g);
+      const texte: string[] = zuLesenderText.match(/(\S+[\s.]){1,20}/g);
 
       texte.forEach(text => {
           const vorleser: SpeechSynthesisUtterance = this.erzeugeVorleser(text);

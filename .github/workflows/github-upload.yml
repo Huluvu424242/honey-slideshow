@@ -8,8 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to Bintray
-         env: |
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm i

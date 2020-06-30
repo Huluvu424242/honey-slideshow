@@ -17,8 +17,10 @@ jobs:
         run: |
           npm i
           npm run build
-          npm config set email huluvu424242@gmail.com
-          npm config set user huluvu424242
+          echo "registry=https://registry.npmjs.com/" >> .npmrc
+          echo "_auth="${NPM_AUT_TOKEN}" >> .npmrc
+          echo "email=huluvu424242@gmail.com" >> .npmrc
+          echo "always-auth=true" >> .npmrc
           npm login
           npm publish  --access=public
 

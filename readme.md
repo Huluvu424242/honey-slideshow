@@ -59,6 +59,10 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
+### v0.0.4  
+
+* [issue#16](https://github.com/FunThomas424242/honey-slideshow/issues/16) split language for audio
+
 ### v0.0.3 at 2020-06-27
 
 * build with nodejs 14.1.0

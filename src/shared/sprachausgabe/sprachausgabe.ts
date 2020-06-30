@@ -23,6 +23,21 @@ export class Sprachausgabe {
     Logger.infoMessage("####constructor finished");
   }
 
+
+  initialisiereVorleserStimme(vorleser: SpeechSynthesisUtterance) {
+    Logger.infoMessage("erzeugeVorleser started");
+
+    vorleser.pitch = this.sprachauswahl.getPitch();
+    vorleser.rate = this.sprachauswahl.getRate();
+    vorleser.volume = this.sprachauswahl.getVolume();
+    vorleser.voice = this.sprachauswahl.getVoice();
+    if (vorleser.voice && vorleser.voice.lang) {
+      vorleser.lang = vorleser.voice.lang;
+    } else {
+      vorleser.lang = "de-DE";
+    }
+  }
+
   erzeugeVorleser(text: string): SpeechSynthesisUtterance {
     const vorleser: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text);
 
@@ -67,23 +82,12 @@ export class Sprachausgabe {
     return vorleser;
   }
 
-  initialisiereVorleserStimme(vorleser: SpeechSynthesisUtterance) {
-    Logger.infoMessage("erzeugeVorleser started");
-
-    vorleser.pitch = this.sprachauswahl.getPitch();
-    vorleser.rate = this.sprachauswahl.getRate();
-    vorleser.volume = this.sprachauswahl.getVolume();
-    vorleser.voice = this.sprachauswahl.getVoice();
-    if (vorleser.voice && vorleser.voice.lang) {
-      vorleser.lang = vorleser.voice.lang;
-    } else {
-      vorleser.lang = "de-DE";
-    }
-  }
 
   textVorlesen(zuLesenderText: string) {
     if (zuLesenderText) {
-      const texte: string[] = zuLesenderText.match(/(\S+[\s.]){1,20}/g);
+      // Auftrennung in Textblöcken nach Sprachen.
+      // const texte: string[] = zuLesenderText.match(/(\S+[\s.]){1,20}/g);
+      const texte: string[] = [zuLesenderText];
 
       texte.forEach(text => {
           const vorleser: SpeechSynthesisUtterance = this.erzeugeVorleser(text);

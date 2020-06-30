@@ -17,10 +17,7 @@ jobs:
         run: |
           npm i
           npm run build
-          echo "huluvu424242" > input.txt
-          echo "huluvu424242@gmail.com" >> input.txt
-          echo "${NPM_AUTH_TOKEN}" >> input.txt
-          npm login < input.txt
+          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
           npm publish  --access=public
 
 

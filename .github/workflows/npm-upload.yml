@@ -18,7 +18,7 @@ jobs:
           npm i
           npm run build
           echo "registry=https://registry.npmjs.com/" >> .npmrc
-          echo "_auth="${NPM_AUT_TOKEN}" >> .npmrc
+          echo "_auth=${NPM_AUT_TOKEN}" >> .npmrc
           echo "email=huluvu424242@gmail.com" >> .npmrc
           echo "always-auth=true" >> .npmrc
           npm login

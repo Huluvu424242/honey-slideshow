@@ -61,7 +61,8 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ### v0.0.4  
 
-* [issue#16](https://github.com/FunThomas424242/honey-slideshow/issues/16) split language for audio
+* [issue#16](https://github.com/FunThomas424242/honey-slideshow/issues/16) split of audio texts into 20 char pices is removed. 
+* [issue#27](https://github.com/FunThomas424242/honey-slideshow/issues/27) load error of audio file response will be handled 
 
 ### v0.0.3 at 2020-06-27
 

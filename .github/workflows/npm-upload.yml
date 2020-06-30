@@ -2,7 +2,8 @@ name: Upload to npmjs.com
 on:
   push:
     branches:
-      - master # Change this to your default branch
+      - 'release/**'
+      - '!release/**-snapshot'
 jobs:
   npm-publish:
     name: npm-publish

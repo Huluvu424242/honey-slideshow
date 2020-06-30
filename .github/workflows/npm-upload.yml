@@ -17,6 +17,8 @@ jobs:
         run: |
           npm i
           npm run build
+          npm config set email huluvu424242@gmail.com
+          npm config set user huluvu424242
           npm login
           npm publish  --access=public
 

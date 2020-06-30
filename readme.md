@@ -13,7 +13,7 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.3/dist/honey-slideshow/honey-slideshow.js">
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.4/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
 
@@ -59,7 +59,7 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
-### v0.0.4  
+### v0.0.4 at 2020-06-30
 
 * [issue#16](https://github.com/FunThomas424242/honey-slideshow/issues/16) split of audio texts into 20 char pices is removed. 
 * [issue#27](https://github.com/FunThomas424242/honey-slideshow/issues/27) load error of audio file response will be handled 

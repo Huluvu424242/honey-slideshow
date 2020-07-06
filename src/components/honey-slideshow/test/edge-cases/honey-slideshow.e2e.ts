@@ -1,7 +1,7 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-xdescribe('honey-slideshow', () => {
-  it('renders', async () => {
+describe('edge cases', () => {
+  xit('renders', async () => {
     const page = await newE2EPage();
 
     await page.setContent('<honey-slideshow></honey-slideshow>');
@@ -9,7 +9,7 @@ xdescribe('honey-slideshow', () => {
     expect(element).toHaveClass('hydrated');
   });
 
-  it('renders changes to the name data', async () => {
+  xit('renders changes to the name data', async () => {
     const page = await newE2EPage();
 
     await page.setContent('<honey-slideshow></honey-slideshow>');

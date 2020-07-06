@@ -59,6 +59,10 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
+### v0.0.5
+
+* [issue#43](https://github.com/FunThomas424242/honey-slideshow/issues/43) code of conduct added
+
 ### v0.0.4 at 2020-06-30
 
 * [issue#16](https://github.com/FunThomas424242/honey-slideshow/issues/16) split of audio texts into 20 char pices is removed. 

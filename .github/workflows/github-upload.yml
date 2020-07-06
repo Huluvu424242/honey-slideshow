@@ -9,14 +9,24 @@ jobs:
       - uses: actions/checkout@v2
       - name: Deploy to Github
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm i
           npm run build
-          npm config set @huluvu424242:registry https://npm.pkg.github.com/
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
           npm publish  --access=public
+
+
+
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          npm i
+#          npm run build
+#          npm config set @huluvu424242:registry https://npm.pkg.github.com/
+#          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+#          npm publish  --access=public
 
 #      - uses: actions/setup-node@v1
 #        with:

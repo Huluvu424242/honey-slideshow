@@ -1,15 +1,21 @@
 import {HoneySlideshow} from '../../honey-slideshow';
 import {newSpecPage} from "@stencil/core/testing";
-import {Sprachsynthese} from "../../../../shared/sprachausgabe/sprachsynthese";
+import {Sprachauswahl} from "../../../../shared/stimmenauswahl/stimmenauswahl";
+import {Sprachausgabe} from "../../../../shared/sprachausgabe/sprachausgabe";
 
 describe('beschreibung', () => {
 
 
   xit('should render my component', async () => {
     const page = await newSpecPage({
-      components: [HoneySlideshow, Sprachsynthese],
+      components: [HoneySlideshow],
       url: 'http://invalidURL.de',
       html: `<honey-slideshow baseURL="http://invalidURL.de"></honey-slideshow>`,
+      context: {
+        sprachauswahl: Sprachauswahl,
+        sprachausgabe: Sprachausgabe,
+        sprachSynthese: window.speechSynthesis
+      },
     });
     expect(page).not.toBeNull();
   });

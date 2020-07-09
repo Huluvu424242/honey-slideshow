@@ -5,8 +5,7 @@ export const config: Config = {
   globalStyle:  'src/global/global.css',
   outputTargets: [
     {
-      type: 'dist',
-      esmLoaderPath: '../loader',
+      type: 'dist-custom-elements-bundle',
     },
     {
       type: 'docs-readme'

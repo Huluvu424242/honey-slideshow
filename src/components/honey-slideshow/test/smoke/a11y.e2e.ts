@@ -22,7 +22,7 @@ describe('example', () => {
     const browser = await puppeteer.launch()
     const axeBuilder = await loadPage(
       browser,
-      'https://funthomas424242.github.io/foile-pile/evaluationen/community-tools/index.html'
+      'https://huluvu424242.github.io/foile-pile/evaluationen/community-tools/index.html'
     )
     const results = await axeBuilder.analyze()
     console.log(results)

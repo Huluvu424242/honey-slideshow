@@ -9,7 +9,7 @@ describe('example', () => {
   beforeEach(async () => {
     page = await newE2EPage();
     await page.setContent(
-      `<honey-slideshow id="designrules" baseurl="https://funthomas424242.github.io/foile-pile/evaluationen/community-tools/">
+      `<honey-slideshow id="designrules" baseurl="https://huluvu424242.github.io/foile-pile/evaluationen/community-tools/">
                 <h2 slot="title">Evaluierung Community Tools</h2>
                 <div id="slidewin" slot="slide-area" class="slides"></div>
             </honey-slideshow>`

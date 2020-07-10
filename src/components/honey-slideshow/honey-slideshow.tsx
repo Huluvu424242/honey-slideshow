@@ -97,7 +97,9 @@ export class HoneySlideshow {
     this.tags = [];
     this.loadMetadata();
     marked.setOptions({
-      baseUrl: this.baseurl
+      baseUrl: this.baseurl,
+      headerIds: true,
+      headerPrefix: "heading"
     });
   }
 

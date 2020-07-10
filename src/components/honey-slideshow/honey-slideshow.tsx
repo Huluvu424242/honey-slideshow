@@ -240,16 +240,19 @@ export class HoneySlideshow {
         <div id={"slide-control"} class={"flex-container"}>
           <button onClick={(event: UIEvent) => this.handleStart(event)}
                   disabled={this.slide < 1}
+                  id="startpos"
                   class="flex-content"
                   title={"Zur ersten Folie"}
                   innerHTML={IMG_START}/>
           <button onClick={(event: UIEvent) => this.handleFastRewind(event)}
                   disabled={(this.slide - 10) < 0}
+                  id="fastrewind"
                   class="flex-content"
                   title={"10 Folien zurück"}
                   innerHTML={IMG_FASTREWIND}/>
           <button onClick={(event: UIEvent) => this.handleRewind(event)}
                   disabled={(this.slide - 1) < 0}
+                  id="rewind"
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
@@ -262,26 +265,31 @@ export class HoneySlideshow {
             innerHTML={IMG_PLAY}/>
           <button onClick={(event: UIEvent) => this.handlePause(event)}
                   disabled={!this.isPlayingMode || this.isPausierend}
+                  id="pause"
                   class="flex-content"
                   title="Sprachausgabe pausieren"
                   innerHTML={IMG_PAUSE}/>
           <button onClick={(event: UIEvent) => this.handleStop(event)}
                   disabled={!this.isPlayingMode}
+                  id="stop"
                   class="flex-content"
                   title="Sprachausgabe beenden"
                   innerHTML={IMG_STOP}/>
           <button onClick={(event: UIEvent) => this.handleForeward(event)}
                   disabled={(this.slide + 1) > (this.slides.length - 1)}
+                  id="forward"
                   class="flex-content"
                   title={"1 Folie weiter"}
                   innerHTML={IMG_FOREWARD}/>
           <button onClick={(event: UIEvent) => this.handleFastForeward(event)}
                   disabled={(this.slide + 10) > (this.slides.length - 1)}
+                  id="fastforward"
                   class="flex-content"
                   title="10 Folien weiter"
                   innerHTML={IMG_FASTFOREWARD}/>
           <button onClick={(event: UIEvent) => this.handleEnd(event)}
                   disabled={this.slide >= (this.slides.length - 1)}
+                  id="endpos"
                   class="flex-content"
                   title="Zur letzten Folie"
                   innerHTML={IMG_END}/>

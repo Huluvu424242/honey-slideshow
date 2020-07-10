@@ -35,7 +35,7 @@ npm install --save honey-slideshow
 
 <honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
 
-  <h2 slot="title"> Titel der Präsentation</h2>
+  <h1 slot="title"> Titel der Präsentation</h1>
 
   <!-- Dieser Slot dient nur dazu das Styling der Folien von außen per CSS beeinflussen zu können -->
   <div id="slidewin" slot="slide-area" class="slides meine tollen styles sind dabei"></div>

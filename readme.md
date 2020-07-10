@@ -35,7 +35,7 @@ npm install --save honey-slideshow
 
 <honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
 
-  <h1 slot="title"> Titel der Präsentation</h1>
+  <p slot="title" class=".note">Sie sehen eine Präsentation über Steine</p>
 
   <!-- Dieser Slot dient nur dazu das Styling der Folien von außen per CSS beeinflussen zu können -->
   <div id="slidewin" slot="slide-area" class="slides meine tollen styles sind dabei"></div>
@@ -61,7 +61,9 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ### v0.0.5
 
+* [issue#44](https://github.com/FunThomas424242/honey-slideshow/issues/44) build single bundle (treeshakeable)
 * [issue#43](https://github.com/FunThomas424242/honey-slideshow/issues/43) code of conduct added
+* [issue#41](https://github.com/FunThomas424242/honey-slideshow/issues/41) axe tests prepared
 
 ### v0.0.4 at 2020-06-30
 

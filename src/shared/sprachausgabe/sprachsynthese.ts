@@ -1,7 +1,10 @@
 import {Logger} from "../logging/logger";
+import {ObjectFactory} from "../commons/objectfactory";
+
+
 
 export class Sprachsynthese {
-  sprachSynthese: SpeechSynthesis = window.speechSynthesis;
+  sprachSynthese: SpeechSynthesis = ObjectFactory.getSpeechSynthesis();
   voices: SpeechSynthesisVoice[];
 
   constructor() {
@@ -11,7 +14,7 @@ export class Sprachsynthese {
     };
   }
 
-  public  getSynthese() {
+  public getSynthese() {
     return this.sprachSynthese;
   }
 

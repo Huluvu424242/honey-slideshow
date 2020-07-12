@@ -1,6 +1,10 @@
 name: Upload to Github
 
-on: [push]
+on:
+  push:
+    branches:
+      - 'release/**'
+      - '!release/**-snapshot'
 
 jobs:
   build:

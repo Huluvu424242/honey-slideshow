@@ -1,5 +1,5 @@
 {
-  "timestamp": "2020-07-10T21:19:53",
+  "timestamp": "2020-07-12T15:22:08",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.16.0-4",
@@ -20,6 +20,70 @@
           "type": "string",
           "mutable": false,
           "attr": "baseurl",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "cssfile",
+          "type": "string",
+          "mutable": false,
+          "attr": "cssfile",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "markedoptions",
+          "type": "string",
+          "mutable": false,
+          "attr": "markedoptions",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "slidelist",
+          "type": "string",
+          "mutable": false,
+          "attr": "slidelist",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "taglist",
+          "type": "string",
+          "mutable": false,
+          "attr": "taglist",
           "reflectToAttr": false,
           "docs": "",
           "docsTags": [],

@@ -1,16 +1,17 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'honey-slideshow',
-  globalStyle:  'src/global/global.css',
+  namespace: "honey-slideshow",
+  srcDir: "src",
+  globalStyle:  "src/global/global.css",
   outputTargets: [
     {
       type: 'dist-custom-elements-bundle',
     },
-    // {
-    //   type: 'dist',
-    //   esmLoaderPath: '../loader',
-    // },
+    {
+      type: 'dist',
+      esmLoaderPath: '../loader',
+    },
     {
       type: 'docs-readme'
     },

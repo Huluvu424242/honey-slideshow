@@ -30,7 +30,13 @@ export class HoneySlideshow {
   // Host Element
   @Element() el: HTMLElement;
 
+  // mandatory attribute
   @Prop() baseurl: string;
+  // optional attributes
+  @Prop() taglist: string;
+  @Prop() slidelist: string;
+  @Prop() markedoptions: string;
+  @Prop() cssfile: string; // unused at now
 
   @State() tags: Array<string>;
   @State() slides: Array<string>;
@@ -96,11 +102,6 @@ export class HoneySlideshow {
     this.slides = [];
     this.tags = [];
     this.loadMetadata();
-    marked.setOptions({
-      baseUrl: this.baseurl,
-      headerIds: true,
-      headerPrefix: "heading"
-    });
   }
 
   printPageNum(): string {
@@ -113,15 +114,36 @@ export class HoneySlideshow {
   }
 
   loadMetadata() {
-    const indexFile = this.getFileURLexternalForm("0index.txt");
-    Fileloader.of(indexFile).loadFile().subscribe((indexInfo: ResponseInfo) => {
-      this.slides = indexInfo.content.split(',').map(value => value.trim());
+    // tags & taglist
+    if( this.taglist ){
+      this.tags = this.taglist.split(',').map(value => value.trim());
+    }else {
+      const tagsFile = this.getFileURLexternalForm("0tags.txt");
+      Fileloader.of(tagsFile).loadFile().subscribe((tagsInfo: ResponseInfo) => {
+        this.tags = tagsInfo.content.split(',').map(value => value.trim());
+      });
+    }
+    // markedoptions
+    if(this.markedoptions){
+      marked.setOptions(JSON.parse(this.markedoptions));
+    }else {
+      marked.setOptions({
+        baseUrl: this.baseurl,
+        headerIds: true,
+        headerPrefix: "heading"
+      });
+    }
+    // slides & slidelist
+    if( this.slidelist ){
+      this.slides = this.slidelist.split(',').map(value => value.trim());
       this.loadSlideContent();
-    });
-    const tagsFile = this.getFileURLexternalForm("0tags.txt");
-    Fileloader.of(tagsFile).loadFile().subscribe((tagsInfo: ResponseInfo) => {
-      this.tags = tagsInfo.content.split(',').map(value => value.trim());
-    });
+    }else {
+      const indexFile = this.getFileURLexternalForm("0index.txt");
+      Fileloader.of(indexFile).loadFile().subscribe((indexInfo: ResponseInfo) => {
+        this.slides = indexInfo.content.split(',').map(value => value.trim());
+        this.loadSlideContent();
+      });
+    }
   }
 
   loadAudioContent() {

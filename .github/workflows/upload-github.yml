@@ -19,8 +19,8 @@ jobs:
           npm i
           npm run build
           echo "//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
-          echo "registry=https://npm.pkg.github.com/funthomas424242" >> .npmrc
-          echo "@funthomas424242:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "registry=https://npm.pkg.github.com/huluvu424242" >> .npmrc
+          echo "@huluvu424242:registry=https://npm.pkg.github.com" >> .npmrc
           echo "@huluvu424242:registry=https://npm.pkg.github.com" >> .npmrc
           npm publish  --access=public
 
@@ -41,7 +41,7 @@ jobs:
 #          node-version: '14.x'
 #          registry-url: 'https://npm.pkg.github.com'
 #          # Defaults to the user or organization that owns the workflow file
-#          scope: '@FunThomas424242'
+#          scope: '@Huluvu424242'
 #      - run: npm install
 #      - run: npm publish
 #        env:

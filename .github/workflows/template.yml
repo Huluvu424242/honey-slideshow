@@ -23,6 +23,6 @@
 #        with:
 #          access-token: ${{ secrets.GITHUB_TOKEN }}
 #          file-path: dist/
-#          username: funthomas424242
+#          username: huluvu424242
 #          repo: honey-slideshow
 ##          remote-dir: remoteDir

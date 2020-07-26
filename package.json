@@ -1,6 +1,6 @@
 {
   "name": "@huluvu424242/honey-slideshow",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Text to Speech component wich is reading texts from DOM elements.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -29,10 +29,10 @@
     "webcomponent",
     "custom-element"
   ],
-  "author": "FunThomas424242 alias Huluvu424242 (Thomas Schubert)",
+  "author": "Huluvu424242 alias Thomas Schubert",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FunThomas424242/honey-slideshow/issues"
+    "url": "https://github.com/Huluvu424242/honey-slideshow/issues"
   },
   "scripts": {
     "build": "stencil build --docs",

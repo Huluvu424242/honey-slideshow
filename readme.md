@@ -13,7 +13,7 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.4/dist/honey-slideshow/honey-slideshow.js">
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.5/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
 
@@ -33,7 +33,7 @@ npm install --save honey-slideshow
 -->
 ```html
 
-<honey-slideshow id="slideshow1" baseurl="https://funthomas424242.github.io/foile-pile/ux/designrules/">
+<honey-slideshow id="slideshow1" baseurl="https://huluvu424242.github.io/foile-pile/ux/designrules/">
 
   <p slot="title" class=".note">Sie sehen eine Präsentation über Steine</p>
 
@@ -43,11 +43,11 @@ npm install --save honey-slideshow
 </honey-slideshow>
 
 ```
-Structure of [demo project](https://github.com/FunThomas424242/foile-pile/tree/master/explainations/ux/designrules).
+Structure of [demo project](https://github.com/Huluvu424242/foile-pile/tree/master/explainations/ux/designrules).
 
 ![Folderstructure](./docs/img/FolderStructure.png)
 
-To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
+To the [live demo](https://huluvu424242.github.io/honey-slideshow/index.html)
 
 ## become an supporter
 
@@ -61,34 +61,35 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ### v0.0.6
 
-* [issue#44](https://github.com/FunThomas424242/honey-slideshow/issues/44) build single bundle (treeshakeable)
-* [issue#43](https://github.com/FunThomas424242/honey-slideshow/issues/43) code of conduct added
-* [issue#41](https://github.com/FunThomas424242/honey-slideshow/issues/41) axe tests prepared
+* [issue#44](https://github.com/Huluvu424242/honey-slideshow/issues/44) build single bundle (treeshakeable)
+* [issue#43](https://github.com/Huluvu424242/honey-slideshow/issues/43) code of conduct added
+* [issue#41](https://github.com/Huluvu424242/honey-slideshow/issues/41) axe tests prepared
 
-### v0.0.6 at 2020-07-26
+### v0.0.5 at 2020-07-26
 
-* [issue#49](https://github.com/FunThomas424242/honey-slideshow/issues/49) lodash secure issue fixed
+* [issue#49](https://github.com/Huluvu424242/honey-slideshow/issues/49) lodash secure issue fixed
+* github username changed from FunThomas424242 to Huluvu424242 -> fixed github upload issues for owned scope
 
 ### v0.0.4 at 2020-06-30
 
-* [issue#16](https://github.com/FunThomas424242/honey-slideshow/issues/16) split of audio texts into 20 char pices is removed. 
-* [issue#27](https://github.com/FunThomas424242/honey-slideshow/issues/27) load error of audio file response will be handled 
+* [issue#16](https://github.com/Huluvu424242/honey-slideshow/issues/16) split of audio texts into 20 char pices is removed. 
+* [issue#27](https://github.com/Huluvu424242/honey-slideshow/issues/27) load error of audio file response will be handled 
 
 ### v0.0.3 at 2020-06-27
 
 * build with nodejs 14.1.0
 * upgrade to stencil 1.14.0
-* [issue#35](https://github.com/FunThomas424242/honey-slideshow/issues/35) diasble autoplay
-* [issue#33](https://github.com/FunThomas424242/honey-slideshow/issues/33) clean up damaged repo
+* [issue#35](https://github.com/Huluvu424242/honey-slideshow/issues/35) diasble autoplay
+* [issue#33](https://github.com/Huluvu424242/honey-slideshow/issues/33) clean up damaged repo
 
 ### v0.0.2 at 2020-06-10
 
-* [issue#30](https://github.com/FunThomas424242/honey-slideshow/issues/30) foile link added
-* [issue#28](https://github.com/FunThomas424242/honey-slideshow/issues/28) baseurl for foile sources added
+* [issue#30](https://github.com/Huluvu424242/honey-slideshow/issues/30) foile link added
+* [issue#28](https://github.com/Huluvu424242/honey-slideshow/issues/28) baseurl for foile sources added
 
 ### v0.0.1 at 2020-05-31
 
-* setup project based at https://github.com/FunThomas424242/honey-speech
+* setup project based at https://github.com/Huluvu424242/honey-speech
 
 ## warranty
 

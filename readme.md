@@ -13,7 +13,7 @@ npm install --save honey-slideshow
 ```html
 <script 
     type="module" 
-    src="https://unpkg.com/@huluvu424242/honey-slideshow@0.0.5/dist/honey-slideshow/honey-slideshow.js">
+    src="https://unpkg.com/@huluvu424242/honey-slideshow@Huluvu/dist/honey-slideshow/honey-slideshow.js">
 </script>
 ```
 
@@ -65,7 +65,7 @@ To the [live demo](https://huluvu424242.github.io/honey-slideshow/index.html)
 * [issue#43](https://github.com/Huluvu424242/honey-slideshow/issues/43) code of conduct added
 * [issue#41](https://github.com/Huluvu424242/honey-slideshow/issues/41) axe tests prepared
 
-### v0.0.5 at 2020-07-26
+### v0.0.5 - v0.0.6 at 2020-07-26
 
 * [issue#49](https://github.com/Huluvu424242/honey-slideshow/issues/49) lodash secure issue fixed
 * github username changed from FunThomas424242 to Huluvu424242 -> fixed github upload issues for owned scope

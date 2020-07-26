@@ -1,6 +1,6 @@
 {
   "name": "@huluvu424242/honey-slideshow",
-  "version": "0.0.5",
+  "version": "Huluvu",
   "description": "Text to Speech component wich is reading texts from DOM elements.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -7,10 +7,10 @@ export const config: Config = {
     {
       type: 'dist-custom-elements-bundle',
     },
-    // {
-    //   type: 'dist',
-    //   esmLoaderPath: '../loader',
-    // },
+    {
+      type: 'dist',
+      esmLoaderPath: '../loader',
+    },
     {
       type: 'docs-readme'
     },

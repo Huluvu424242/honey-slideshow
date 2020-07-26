@@ -65,7 +65,7 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 * [issue#43](https://github.com/FunThomas424242/honey-slideshow/issues/43) code of conduct added
 * [issue#41](https://github.com/FunThomas424242/honey-slideshow/issues/41) axe tests prepared
 
-### v0.0.6 at 2020-07-26
+### v0.0.5 at 2020-07-26
 
 * [issue#49](https://github.com/FunThomas424242/honey-slideshow/issues/49) lodash secure issue fixed
 

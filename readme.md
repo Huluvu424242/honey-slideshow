@@ -59,7 +59,7 @@ To the [live demo](https://huluvu424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
-### v0.0.6
+### v0.0.X
 
 * [issue#44](https://github.com/Huluvu424242/honey-slideshow/issues/44) build single bundle (treeshakeable)
 * [issue#43](https://github.com/Huluvu424242/honey-slideshow/issues/43) code of conduct added

@@ -59,11 +59,15 @@ To the [live demo](https://funthomas424242.github.io/honey-slideshow/index.html)
 
 ## releaselog
 
-### v0.0.5
+### v0.0.6
 
 * [issue#44](https://github.com/FunThomas424242/honey-slideshow/issues/44) build single bundle (treeshakeable)
 * [issue#43](https://github.com/FunThomas424242/honey-slideshow/issues/43) code of conduct added
 * [issue#41](https://github.com/FunThomas424242/honey-slideshow/issues/41) axe tests prepared
+
+### v0.0.6 at 2020-07-26
+
+* [issue#49](https://github.com/FunThomas424242/honey-slideshow/issues/49) lodash secure issue fixed
 
 ### v0.0.4 at 2020-06-30
 

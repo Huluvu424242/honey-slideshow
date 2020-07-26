@@ -1,5 +1,5 @@
 {
-  "timestamp": "2020-07-10T21:19:53",
+  "timestamp": "2020-07-26T11:50:55",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.16.0-4",
@@ -10,7 +10,7 @@
       "filePath": "./src/components/honey-slideshow/honey-slideshow.tsx",
       "encapsulation": "shadow",
       "tag": "honey-slideshow",
-      "readme": "# honey-slideshow\n",
+      "readme": "# honey-slideshow\r\n\r",
       "docs": "",
       "docsTags": [],
       "usage": {},

@@ -29,10 +29,10 @@
     "webcomponent",
     "custom-element"
   ],
-  "author": "FunThomas424242 alias Huluvu424242 (Thomas Schubert)",
+  "author": "Huluvu424242 alias Thomas Schubert",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FunThomas424242/honey-slideshow/issues"
+    "url": "https://github.com/Huluvu424242/honey-slideshow/issues"
   },
   "scripts": {
     "build": "stencil build --docs",

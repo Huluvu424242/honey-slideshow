@@ -68,6 +68,7 @@ To the [live demo](https://huluvu424242.github.io/honey-slideshow/index.html)
 ### v0.0.5 at 2020-07-26
 
 * [issue#49](https://github.com/Huluvu424242/honey-slideshow/issues/49) lodash secure issue fixed
+* github username changed from FunThomas424242 to Huluvu424242 -> fixed github upload issues for owned scope
 
 ### v0.0.4 at 2020-06-30
 

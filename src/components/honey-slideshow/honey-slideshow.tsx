@@ -1,4 +1,4 @@
-import {Component, Element, h, Prop, State} from "@stencil/core";
+import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,
@@ -10,7 +10,7 @@ import {
   IMG_START,
   IMG_STOP
 } from "./icon-constants";
-import {Sprachausgabe, VorleserCallbacks} from "../../shared/sprachausgabe/sprachausgabe";
+import {Sprachausgabe, VorleserCallback} from "../../shared/sprachausgabe/sprachausgabe";
 import {Sprachauswahl} from "../../shared/stimmenauswahl/stimmenauswahl";
 import {Logger} from "../../shared/logging/logger";
 import {Fileloader, ResponseInfo} from "../../shared/network/fileloader";
@@ -27,8 +27,7 @@ import {Sprachsynthese} from "../../shared/sprachausgabe/sprachsynthese";
 })
 export class HoneySlideshow {
 
-  // Host Element
-  @Element() el: HTMLElement;
+  @Element() hostElement: HTMLElement;
 
   @Prop() baseurl: string;
 
@@ -58,8 +57,8 @@ export class HoneySlideshow {
     return this.getFileURLexternalForm(slideFileName);
   }
 
-  getVorleserCallbacks(): VorleserCallbacks {
-    const callbacks: VorleserCallbacks = {}
+  getVorleserCallbacks(): VorleserCallback {
+    const callbacks: VorleserCallback = {}
     callbacks.onstart = () => {
       this.isPlayingMode = true;
       this.isPausierend = false;
@@ -229,7 +228,7 @@ export class HoneySlideshow {
 
   render() {
     return (
-      <host>
+      <Host>
         <header>
           <slot name={"title"}>Platzhalter für den Titel der Präsentation</slot>
           <div id="taglist" class={"tag-container"}>
@@ -239,12 +238,12 @@ export class HoneySlideshow {
           </div>
         </header>
         <hr class={"hr-oben"}/>
-        <div id={"slide-control"} class={"flex-container"}>
+        <div id="slide-control" class="flex-container">
           <button onClick={(event: UIEvent) => this.handleStart(event)}
                   disabled={this.slide < 1}
                   id="startpos"
                   class="flex-content"
-                  title={"Zur ersten Folie"}
+                  title="Zur ersten Folie"
                   innerHTML={IMG_START}/>
           <button onClick={(event: UIEvent) => this.handleFastRewind(event)}
                   disabled={(this.slide - 10) < 0}
@@ -307,7 +306,7 @@ export class HoneySlideshow {
           </div>
           <slot name={"slide-area"}/>
         </main>
-      </host>
+      </Host>
     );
   }
 }

@@ -2,7 +2,7 @@ import {Logger} from "../logging/logger";
 import {Sprachauswahl} from "../stimmenauswahl/stimmenauswahl";
 import {Sprachsynthese} from "./sprachsynthese";
 
-export interface VorleserCallbacks {
+export interface VorleserCallback {
   onend?: () => void;
   onstart?: () => void;
   onpause?: () => void;
@@ -12,19 +12,19 @@ export interface VorleserCallbacks {
 
 export class Sprachausgabe {
 
-  sprachSynthese: Sprachsynthese;
-  sprachauswahl: Sprachauswahl;
-  vorleserCallbacks: VorleserCallbacks;
+  protected sprachSynthese: Sprachsynthese;
+  protected sprachauswahl: Sprachauswahl;
+  protected vorleserCallback: VorleserCallback;
 
-  constructor(sprachSynthese: Sprachsynthese, sprachauswahl: Sprachauswahl, vorleserCallbacks?: VorleserCallbacks) {
+  constructor(sprachSynthese: Sprachsynthese, sprachauswahl: Sprachauswahl, vorleserCallback?: VorleserCallback) {
     this.sprachSynthese = sprachSynthese;
     this.sprachauswahl = sprachauswahl;
-    this.vorleserCallbacks = vorleserCallbacks;
+    this.vorleserCallback = vorleserCallback;
     Logger.infoMessage("####constructor finished");
   }
 
 
-  initialisiereVorleserStimme(vorleser: SpeechSynthesisUtterance) {
+  protected initialisiereVorleserStimme(vorleser: SpeechSynthesisUtterance) {
     Logger.infoMessage("erzeugeVorleser started");
 
     vorleser.pitch = this.sprachauswahl.getPitch();
@@ -38,42 +38,42 @@ export class Sprachausgabe {
     }
   }
 
-  erzeugeVorleser(text: string): SpeechSynthesisUtterance {
+  protected erzeugeVorleser(text: string): SpeechSynthesisUtterance {
     const vorleser: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text);
 
-    if (this.vorleserCallbacks) {
+    if (this.vorleserCallback) {
       vorleser.onend = () => {
         Logger.debugMessage("Vorlesen beendet");
-        if (this.vorleserCallbacks.onend) {
-          this.vorleserCallbacks.onend();
+        if (this.vorleserCallback.onend) {
+          this.vorleserCallback.onend();
         }
       }
 
       vorleser.onstart = () => {
         Logger.debugMessage("Vorlesen gestartet");
-        if (this.vorleserCallbacks.onstart) {
-          this.vorleserCallbacks.onstart();
+        if (this.vorleserCallback.onstart) {
+          this.vorleserCallback.onstart();
         }
       }
 
       vorleser.onpause = () => {
         Logger.debugMessage("Pause mit Vorlesen");
-        if (this.vorleserCallbacks.onpause) {
-          this.vorleserCallbacks.onpause();
+        if (this.vorleserCallback.onpause) {
+          this.vorleserCallback.onpause();
         }
       }
 
       vorleser.onresume = () => {
         Logger.debugMessage("Fortsetzen des Vorlesen");
-        if (this.vorleserCallbacks.onresume) {
-          this.vorleserCallbacks.onresume();
+        if (this.vorleserCallback.onresume) {
+          this.vorleserCallback.onresume();
         }
       }
 
       vorleser.onerror = () => {
         Logger.errorMessage("Fehler beim Vorlesen");
-        if (this.vorleserCallbacks.onerror) {
-          this.vorleserCallbacks.onerror();
+        if (this.vorleserCallback.onerror) {
+          this.vorleserCallback.onerror();
         }
       }
     }
@@ -83,7 +83,7 @@ export class Sprachausgabe {
   }
 
 
-  textVorlesen(zuLesenderText: string) {
+  public textVorlesen(zuLesenderText: string) {
     if (zuLesenderText) {
       // Auftrennung in Textblöcken nach Sprachen.
       // const texte: string[] = zuLesenderText.match(/(\S+[\s.]){1,20}/g);
@@ -105,19 +105,19 @@ export class Sprachausgabe {
     }
   }
 
-  cancelSpeakingAndClearQueue(): void {
+  public cancelSpeakingAndClearQueue(): void {
     this.sprachSynthese.getSynthese().cancel();
   }
 
-  pauseSpeakingFromQueue(): void {
+  public pauseSpeakingFromQueue(): void {
     this.sprachSynthese.getSynthese().pause();
   }
 
-  resumeSpeakingFromQueue(): void {
+  public resumeSpeakingFromQueue(): void {
     this.sprachSynthese.getSynthese().resume();
   }
 
-  isPaused(): boolean {
+  public isPaused(): boolean {
     return this.sprachSynthese.getSynthese().paused;
   }
 }

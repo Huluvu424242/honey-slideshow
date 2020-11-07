@@ -26,6 +26,8 @@ export class HoneySlideshow {
 
   @Element() hostElement: HTMLElement;
 
+  playButton: HTMLButtonElement;
+
   @Prop() baseurl: string;
 
   @State() tags: Array<string>;
@@ -43,20 +45,28 @@ export class HoneySlideshow {
     }
   }
 
-  getCurrentSlideURLExternalForm(): string {
+  getCurrentURLExternalForm(): string {
     const slideNr: number = this.slide;
     const slideFileName: string = this.slides[slideNr];
     return this.getFileURLexternalForm(slideFileName);
   }
 
+  getCurrentSlideURLExternalForm(): string {
+    return this.getCurrentURLExternalForm() + ".md";
+  }
+
+  getCurrentAudiofileURLExternalForm(): string {
+    return this.getCurrentURLExternalForm() + ".txt";
+  }
+
 // wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
-  componentWillLoad() {
+  async componentWillLoad() {
     this.isPlayingMode = false;
     this.isPausierend = false;
     this.slide = 0;
     this.slides = [];
     this.tags = [];
-    this.loadMetadata();
+    await this.loadMetadata();
     marked.setOptions({
       baseUrl: this.baseurl,
       headerIds: true,
@@ -73,20 +83,33 @@ export class HoneySlideshow {
     // this.loadAudioContent();
   }
 
-  loadMetadata() {
+
+  async loadData(fileName: string): Promise<string> {
+    return await new Promise<string>(resolve =>
+      Fileloader.of(fileName).loadFile().subscribe((indexInfo: ResponseInfo) => {
+        resolve(indexInfo.content);
+      }));
+  }
+
+  async loadMetadata() {
     const indexFile = this.getFileURLexternalForm("0index.txt");
-    Fileloader.of(indexFile).loadFile().subscribe((indexInfo: ResponseInfo) => {
-      this.slides = indexInfo.content.split(',').map(value => value.trim());
-      this.loadSlideContent();
-    });
+    const indexFileContent: string = await this.loadData(indexFile);
+    this.slides = indexFileContent.split(',').map(value => value.trim());
+    this.loadSlideContent();
+    // Fileloader.of(indexFile).loadFile().subscribe((indexInfo: ResponseInfo) => {
+    //   this.slides = indexInfo.content.split(',').map(value => value.trim());
+    //   this.loadSlideContent();
+    // });
     const tagsFile = this.getFileURLexternalForm("0tags.txt");
-    Fileloader.of(tagsFile).loadFile().subscribe((tagsInfo: ResponseInfo) => {
-      this.tags = tagsInfo.content.split(',').map(value => value.trim());
-    });
+    const tagsFileContent: string = await this.loadData(tagsFile);
+    this.tags = tagsFileContent.split(',').map(value => value.trim());
+    // Fileloader.of(tagsFile).loadFile().subscribe((tagsInfo: ResponseInfo) => {
+    //   this.tags = tagsInfo.content.split(',').map(value => value.trim());
+    // });
   }
 
   loadSlideContent() {
-    const slideFileName: string = this.getCurrentSlideURLExternalForm() + ".md";
+    const slideFileName: string = this.getCurrentSlideURLExternalForm();
     const slideURL: URL = new URL(slideFileName);
     Logger.infoMessage("slideURL: " + slideURL);
     const slideLoader: Fileloader = new Fileloader(slideURL);
@@ -94,8 +117,8 @@ export class HoneySlideshow {
       Logger.infoMessage("MD Inhalt:\n" + responseInfo.content);
       const element = document.getElementById("slidewin");
       const htmlContent = marked(responseInfo.content);
-      const sanifiedHtmlContent: string = new IonicSafeString(htmlContent).value;
-      element.innerHTML = sanifiedHtmlContent;
+      element.innerHTML = new IonicSafeString(htmlContent).value;
+      ;
     });
   }
 
@@ -170,6 +193,7 @@ export class HoneySlideshow {
 
 
   render() {
+    // this.playButton["textids"]="slidewin";
     return (
       <Host>
         <header>
@@ -200,6 +224,9 @@ export class HoneySlideshow {
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
+          <honey-speaker texturl={this.getCurrentAudiofileURLExternalForm()}
+                         ref={this.playButton}
+                         class="flex-content" pure verbose/>
           <button
             onClick={(event: UIEvent) => this.isPlayingMode && this.isPausierend ? this.handlePause(event) : this.handlePlay(event)}
             disabled={this.isPlayingMode && !this.isPausierend}
@@ -244,8 +271,8 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          <div>Quellen: <a href={this.getCurrentSlideURLExternalForm()+".md"} target={"_blank"} class={"quelle"}>{"Folie"}</a>
-            <a href={this.getCurrentSlideURLExternalForm()+".txt"} target={"_blank"} class={"quelle"}>{"Audio"}</a>
+          <div>Quellen: <a href={this.getCurrentSlideURLExternalForm()} target={"_blank"} class={"quelle"}>{"Folie"}</a>
+            <a href={this.getCurrentSlideURLExternalForm() + ".txt"} target={"_blank"} class={"quelle"}>{"Audio"}</a>
           </div>
           <slot name={"slide-area"}/>
         </main>

@@ -77,11 +77,6 @@ export class HoneySlideshow {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
   }
 
-  // playSlide() {
-  //   Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
-  //   // this.loadAudioContent();
-  // }
-
 
   async loadData(fileName: string): Promise<string> {
     return await new Promise<string>(resolve =>
@@ -95,16 +90,9 @@ export class HoneySlideshow {
     const indexFileContent: string = await this.loadData(indexFile);
     this.slides = indexFileContent.split(',').map(value => value.trim());
     this.loadSlideContent();
-    // Fileloader.of(indexFile).loadFile().subscribe((indexInfo: ResponseInfo) => {
-    //   this.slides = indexInfo.content.split(',').map(value => value.trim());
-    //   this.loadSlideContent();
-    // });
     const tagsFile = this.getFileURLexternalForm("0tags.txt");
     const tagsFileContent: string = await this.loadData(tagsFile);
     this.tags = tagsFileContent.split(',').map(value => value.trim());
-    // Fileloader.of(tagsFile).loadFile().subscribe((tagsInfo: ResponseInfo) => {
-    //   this.tags = tagsInfo.content.split(',').map(value => value.trim());
-    // });
   }
 
   loadSlideContent() {
@@ -124,7 +112,6 @@ export class HoneySlideshow {
   loadSlide() {
     Logger.debugMessage("Lade Slide " + (this.slide + 1));
     this.loadSlideContent();
-    // this.loadAudioContent();
   }
 
   isValidSlide(slideNr: number): boolean {
@@ -157,22 +144,11 @@ export class HoneySlideshow {
 
   handlePause(event: UIEvent) {
     event.target
-    // if (this.sprachausgabe.isPaused()) {
-    //   this.sprachausgabe.resumeSpeakingFromQueue();
-    // } else {
-    //   this.sprachausgabe.pauseSpeakingFromQueue();
-    // }
   }
 
   handleStop(event: UIEvent) {
     event.target
-    // this.sprachausgabe.cancelSpeakingAndClearQueue();
   }
-
-  // handlePlay(event: UIEvent) {
-  //   event.target
-  //   this.playSlide();
-  // }
 
   handleForeward(event: UIEvent) {
     event.target;

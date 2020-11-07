@@ -89,39 +89,46 @@ export class HoneySlideshow {
     const indexFile = this.getFileURLexternalForm("0index.txt");
     const indexFileContent: string = await this.loadData(indexFile);
     this.slides = indexFileContent.split(',').map(value => value.trim());
-    this.loadSlideContent();
+    await this.loadSlideContent();
     const tagsFile = this.getFileURLexternalForm("0tags.txt");
     const tagsFileContent: string = await this.loadData(tagsFile);
     this.tags = tagsFileContent.split(',').map(value => value.trim());
   }
 
-  loadSlideContent() {
+  async loadSlideContent() {
     const slideFileName: string = this.getCurrentSlideURLExternalForm();
-    const slideURL: URL = new URL(slideFileName);
-    Logger.infoMessage("slideURL: " + slideURL);
-    const slideLoader: Fileloader = new Fileloader(slideURL);
-    slideLoader.loadFile().subscribe((responseInfo: ResponseInfo) => {
-      Logger.infoMessage("MD Inhalt:\n" + responseInfo.content);
-      const element = document.getElementById("slidewin");
-      const htmlContent = marked(responseInfo.content);
-      element.innerHTML = new IonicSafeString(htmlContent).value;
-    });
+    // const slideURL: URL = new URL(slideFileName);
+    // Logger.infoMessage("slideURL: " + slideURL);
+    // const slideLoader: Fileloader = new Fileloader(slideURL);
+    const content = await this.loadData(slideFileName)
+    Logger.infoMessage("MD Inhalt:\n" + content);
+    const htmlContent = marked(content);
+    const element = document.getElementById("slidewin");
+    element.innerHTML = new IonicSafeString(htmlContent).value;
+    //
+    //
+    // slideLoader.loadFile().subscribe((responseInfo: ResponseInfo) => {
+    //   Logger.infoMessage("MD Inhalt:\n" + responseInfo.content);
+    //   const element = document.getElementById("slidewin");
+    //   const htmlContent = marked(responseInfo.content);
+    //   element.innerHTML = new IonicSafeString(htmlContent).value;
+    // });
   }
 
 
-  loadSlide() {
+  async loadSlide() {
     Logger.debugMessage("Lade Slide " + (this.slide + 1));
-    this.loadSlideContent();
+    await this.loadSlideContent();
   }
 
   isValidSlide(slideNr: number): boolean {
     return slideNr > -1 && slideNr < (this.slides.length);
   }
 
-  moveToSlide(slideNr: number) {
+  async moveToSlide(slideNr: number) {
     if (this.isValidSlide(slideNr)) {
       this.slide = slideNr;
-      this.loadSlide();
+      await this.loadSlide();
     } else {
       alert("Invalid Slide -> no change");
     }

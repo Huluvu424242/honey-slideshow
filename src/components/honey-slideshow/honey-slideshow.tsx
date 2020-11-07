@@ -58,7 +58,6 @@ export class HoneySlideshow {
     return this.getCurrentURLExternalForm() + ".txt";
   }
 
-// wird exakt einmal aufgerufen (wenn die Komponente das erste Mal in den DOM eingehängt wird)
   async componentWillLoad() {
     this.isPlayingMode = false;
     this.isPausierend = false;
@@ -97,22 +96,11 @@ export class HoneySlideshow {
 
   async loadSlideContent() {
     const slideFileName: string = this.getCurrentSlideURLExternalForm();
-    // const slideURL: URL = new URL(slideFileName);
-    // Logger.infoMessage("slideURL: " + slideURL);
-    // const slideLoader: Fileloader = new Fileloader(slideURL);
     const content = await this.loadData(slideFileName)
     Logger.infoMessage("MD Inhalt:\n" + content);
     const htmlContent = marked(content);
     const element = document.getElementById("slidewin");
     element.innerHTML = new IonicSafeString(htmlContent).value;
-    //
-    //
-    // slideLoader.loadFile().subscribe((responseInfo: ResponseInfo) => {
-    //   Logger.infoMessage("MD Inhalt:\n" + responseInfo.content);
-    //   const element = document.getElementById("slidewin");
-    //   const htmlContent = marked(responseInfo.content);
-    //   element.innerHTML = new IonicSafeString(htmlContent).value;
-    // });
   }
 
 
@@ -252,7 +240,7 @@ export class HoneySlideshow {
         <hr class={"hr-unten"}/>
         <main>
           <div>Quellen: <a href={this.getCurrentSlideURLExternalForm()} target={"_blank"} class={"quelle"}>{"Folie"}</a>
-            <a href={this.getCurrentAudiofileURLExternalForm() } target={"_blank"} class={"quelle"}>{"Audio"}</a>
+            <a href={this.getCurrentAudiofileURLExternalForm()} target={"_blank"} class={"quelle"}>{"Audio"}</a>
           </div>
           <slot name={"slide-area"}/>
         </main>

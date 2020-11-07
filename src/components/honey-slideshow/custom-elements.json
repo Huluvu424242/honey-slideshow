@@ -1,5 +1,5 @@
 {
-  "timestamp": "2020-11-07T17:12:08",
+  "timestamp": "2020-11-07T19:11:39",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.16.0-4",
@@ -39,8 +39,14 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "honey-speaker"
+      ],
+      "dependencyGraph": {
+        "honey-slideshow": [
+          "honey-speaker"
+        ]
+      }
     }
   ]
 }

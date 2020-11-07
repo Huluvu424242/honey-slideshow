@@ -47,12 +47,13 @@
     "pruefeVersionen": "npm outdated"
   },
   "dependencies": {
-    "rxjs": "6.5.5",
-    "marked": "1.0.0",
-    "@ionic/core": "5.1.1"
+    "@stencil/core": "1.16.0-4",
+    "@ionic/core": "5.1.1",
+    "@huluvu424242/honey-speaker": "0.0.14",
+    "rxjs": "6.6.3",
+    "marked": "1.0.0"
   },
   "devDependencies": {
-    "@stencil/core": "1.16.0-4",
     "@types/jest": "26.0.3",
     "@types/puppeteer": "3.0.1",
     "jest": "26.1.0",

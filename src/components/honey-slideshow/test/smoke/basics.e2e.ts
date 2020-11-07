@@ -28,7 +28,7 @@ describe('example', () => {
     expect(elm.getAttribute('title')).toEqualText('Zur letzten Folie');
 
      elm = await page.find('honey-slideshow >>> #playbutton');
-    expect(elm.getAttribute('title')).toEqualText('Vortrag beginnen lassen');
+    expect(elm.getAttribute('title')).toEqualText('Vorlesen');
 
   });
 });

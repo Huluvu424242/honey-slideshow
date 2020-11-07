@@ -1,4 +1,4 @@
-import {Component, Element, forceUpdate, h, Host, Prop, State} from "@stencil/core";
+import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,

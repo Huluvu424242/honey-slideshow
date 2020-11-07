@@ -1,4 +1,4 @@
-import {Component, Element, h, Host, Prop, State} from "@stencil/core";
+import {Component, Element, forceUpdate, h, Host, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,
@@ -195,13 +195,9 @@ export class HoneySlideshow {
           <honey-speaker id="playbutton"
                          texturl={this.getCurrentAudiofileURLExternalForm()}
                          ref={this.playButton}
-                         class="flex-content" pure verbose/>
-          {/*<button*/}
-          {/*  onClick={(event: UIEvent) => this.isPlayingMode && this.isPausierend ? this.handlePause(event) : this.handlePlay(event)}*/}
-          {/*  disabled={this.isPlayingMode && !this.isPausierend}*/}
-          {/*  class="flex-content"*/}
+                         class="flex-content" pure/>
           {/*  title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}*/}
-          {/*  innerHTML={IMG_PLAY}/>*/}
+          {/*  innerHTML={IMG_PLAY}/>*/ }
           <button onClick={(event: UIEvent) => this.handlePause(event)}
                   disabled={!this.isPlayingMode || this.isPausierend}
                   id="pause"

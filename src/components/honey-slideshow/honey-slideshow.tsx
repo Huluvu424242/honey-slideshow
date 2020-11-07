@@ -5,7 +5,6 @@ import {
   IMG_FASTREWIND,
   IMG_FOREWARD,
   IMG_PAUSE,
-  IMG_PLAY,
   IMG_REWIND,
   IMG_START,
   IMG_STOP
@@ -30,8 +29,8 @@ export class HoneySlideshow {
 
   @Prop() baseurl: string;
 
-  @State() tags: Array<string>;
-  @State() slides: Array<string>;
+  tags: Array<string>;
+  slides: Array<string>;
   @State() slide: number;
 
   @State() isPlayingMode: boolean;
@@ -78,10 +77,10 @@ export class HoneySlideshow {
     return "Folie\u00a0" + (this.slide + 1) + "/" + this.slides.length;
   }
 
-  playSlide() {
-    Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
-    // this.loadAudioContent();
-  }
+  // playSlide() {
+  //   Logger.debugMessage("Play slide" + this.baseurl + "/" + this.slides[this.slide]);
+  //   // this.loadAudioContent();
+  // }
 
 
   async loadData(fileName: string): Promise<string> {
@@ -118,7 +117,6 @@ export class HoneySlideshow {
       const element = document.getElementById("slidewin");
       const htmlContent = marked(responseInfo.content);
       element.innerHTML = new IonicSafeString(htmlContent).value;
-      ;
     });
   }
 
@@ -148,12 +146,12 @@ export class HoneySlideshow {
   }
 
   handleFastRewind(event: UIEvent) {
-    event.target
+    event.target;
     this.moveToSlide(this.slide - 10);
   }
 
   handleRewind(event: UIEvent) {
-    event.target
+    event.target;
     this.moveToSlide(this.slide - 1);
   }
 
@@ -171,29 +169,28 @@ export class HoneySlideshow {
     // this.sprachausgabe.cancelSpeakingAndClearQueue();
   }
 
-  handlePlay(event: UIEvent) {
-    event.target
-    this.playSlide();
-  }
+  // handlePlay(event: UIEvent) {
+  //   event.target
+  //   this.playSlide();
+  // }
 
   handleForeward(event: UIEvent) {
-    event.target
+    event.target;
     this.moveToSlide(this.slide + 1);
   }
 
   handleFastForeward(event: UIEvent) {
-    event.target
+    event.target;
     this.moveToSlide(this.slide + 10);
   }
 
   handleEnd(event: UIEvent) {
-    event.target
+    event.target;
     this.moveToSlide(this.slides.length - 1);
   }
 
 
   render() {
-    // this.playButton["textids"]="slidewin";
     return (
       <Host>
         <header>
@@ -224,16 +221,16 @@ export class HoneySlideshow {
                   class="flex-content"
                   title={"1 Folie zurück"}
                   innerHTML={IMG_REWIND}/>
-          <honey-speaker texturl={this.getCurrentAudiofileURLExternalForm()}
+          <honey-speaker id="playbutton"
+                         texturl={this.getCurrentAudiofileURLExternalForm()}
                          ref={this.playButton}
                          class="flex-content" pure verbose/>
-          <button
-            onClick={(event: UIEvent) => this.isPlayingMode && this.isPausierend ? this.handlePause(event) : this.handlePlay(event)}
-            disabled={this.isPlayingMode && !this.isPausierend}
-            id="playbutton"
-            class="flex-content"
-            title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}
-            innerHTML={IMG_PLAY}/>
+          {/*<button*/}
+          {/*  onClick={(event: UIEvent) => this.isPlayingMode && this.isPausierend ? this.handlePause(event) : this.handlePlay(event)}*/}
+          {/*  disabled={this.isPlayingMode && !this.isPausierend}*/}
+          {/*  class="flex-content"*/}
+          {/*  title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}*/}
+          {/*  innerHTML={IMG_PLAY}/>*/}
           <button onClick={(event: UIEvent) => this.handlePause(event)}
                   disabled={!this.isPlayingMode || this.isPausierend}
                   id="pause"
@@ -272,7 +269,7 @@ export class HoneySlideshow {
         <hr class={"hr-unten"}/>
         <main>
           <div>Quellen: <a href={this.getCurrentSlideURLExternalForm()} target={"_blank"} class={"quelle"}>{"Folie"}</a>
-            <a href={this.getCurrentSlideURLExternalForm() + ".txt"} target={"_blank"} class={"quelle"}>{"Audio"}</a>
+            <a href={this.getCurrentAudiofileURLExternalForm() } target={"_blank"} class={"quelle"}>{"Audio"}</a>
           </div>
           <slot name={"slide-area"}/>
         </main>

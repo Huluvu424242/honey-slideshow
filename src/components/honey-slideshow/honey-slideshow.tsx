@@ -117,6 +117,7 @@ export class HoneySlideshow {
     if (this.isValidSlide(slideNr)) {
       this.slide = slideNr;
       await this.loadSlide();
+      this.playButton.click();
     } else {
       alert("Invalid Slide -> no change");
     }
@@ -150,7 +151,7 @@ export class HoneySlideshow {
     this.moveToSlide(this.slide + 1);
   }
 
-  handleFastForeward(event: UIEvent) {
+  handleFastForeward(event: Event) {
     event.target;
     this.moveToSlide(this.slide + 10);
   }
@@ -194,35 +195,34 @@ export class HoneySlideshow {
                   innerHTML={IMG_REWIND}/>
           <honey-speaker id="playbutton"
                          texturl={this.getCurrentAudiofileURLExternalForm()}
-                         ref={this.playButton}
+                         ref={el => this.playButton = el}
+                         title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}
                          class="flex-content" pure/>
-          {/*  title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}*/}
-          {/*  innerHTML={IMG_PLAY}/>*/ }
-          <button onClick={(event: UIEvent) => this.handlePause(event)}
+          <button onClick={this.handlePause.bind(this)}
                   disabled={!this.isPlayingMode || this.isPausierend}
                   id="pause"
                   class="flex-content"
                   title="Sprachausgabe pausieren"
                   innerHTML={IMG_PAUSE}/>
-          <button onClick={(event: UIEvent) => this.handleStop(event)}
+          <button onClick={this.handleStop.bind(this)}
                   disabled={!this.isPlayingMode}
                   id="stop"
                   class="flex-content"
                   title="Sprachausgabe beenden"
                   innerHTML={IMG_STOP}/>
-          <button onClick={(event: UIEvent) => this.handleForeward(event)}
+          <button onClick={this.handleForeward.bind(this)}
                   disabled={(this.slide + 1) > (this.slides.length - 1)}
                   id="forward"
                   class="flex-content"
                   title={"1 Folie weiter"}
                   innerHTML={IMG_FOREWARD}/>
-          <button onClick={(event: UIEvent) => this.handleFastForeward(event)}
+          <button onClick={this.handleFastForeward.bind(this)}
                   disabled={(this.slide + 10) > (this.slides.length - 1)}
                   id="fastforward"
                   class="flex-content"
                   title="10 Folien weiter"
                   innerHTML={IMG_FASTFOREWARD}/>
-          <button onClick={(event: UIEvent) => this.handleEnd(event)}
+          <button onClick={this.handleEnd.bind(this)}
                   disabled={this.slide >= (this.slides.length - 1)}
                   id="endpos"
                   class="flex-content"

@@ -1,4 +1,4 @@
-import {Component, Element, h, Host, Prop, State} from "@stencil/core";
+import {Component, Element, h, Host, Listen, Prop, State} from "@stencil/core";
 import {
   IMG_END,
   IMG_FASTFOREWARD,
@@ -116,8 +116,8 @@ export class HoneySlideshow {
   async moveToSlide(slideNr: number) {
     if (this.isValidSlide(slideNr)) {
       this.slide = slideNr;
+      // await this.playButton['pauseSpeaker']();
       await this.loadSlide();
-      this.playButton.click();
     } else {
       alert("Invalid Slide -> no change");
     }
@@ -161,6 +161,45 @@ export class HoneySlideshow {
     this.moveToSlide(this.slides.length - 1);
   }
 
+  @Listen('honeySpeakerStarted', {target: 'body', capture: true})
+  onSpeakerStarted(event: CustomEvent<String>) {
+    if (event.detail) {
+      this.isPlayingMode = true;
+      this.isPausierend = false;
+    }
+  }
+
+  @Listen('honeySpeakerPaused', {target: 'body', capture: true})
+  onSpeakerPaused(event: CustomEvent<String>) {
+    if (event.detail) {
+      this.isPlayingMode = true;
+      this.isPausierend = true;
+    }
+  }
+
+  @Listen('honeySpeakerResumed', {target: 'body', capture: true})
+  onSpeakerResumed(event: CustomEvent<String>) {
+    if (event.detail) {
+      this.isPlayingMode = true;
+      this.isPausierend = false;
+    }
+  }
+
+  @Listen('honeySpeakerFinished', {target: 'body', capture: true})
+  onSpeakerFinished(event: CustomEvent<String>) {
+    if (event.detail) {
+      this.isPlayingMode = false;
+      this.isPausierend = false;
+    }
+  }
+
+  @Listen('honeySpeakerFailed', {target: 'body', capture: true})
+  onSpeakerFailed(event: CustomEvent<String>) {
+    if (event.detail) {
+      this.isPlayingMode = false;
+      this.isPausierend = false;
+    }
+  }
 
   render() {
     return (

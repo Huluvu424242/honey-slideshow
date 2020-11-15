@@ -1,7 +1,7 @@
 @import url(reset.css);
 @import url(slides.css);
 
-// Handy Zoom In Wert in px
+/*Handy Zoom In Wert in px*/
 :root{
   --base-font-size: 16;
 }

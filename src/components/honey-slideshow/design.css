@@ -66,10 +66,18 @@ svg {
 }
 
 .hr-oben {
-  margin: 3px 0px 0px 1px;
+  margin: 3px 0 0 1px;
 }
 
 .hr-unten {
-  margin: 3px 0px 0px 1px;
+  margin: 3px 0 0 1px;
 }
 
+.status{
+  margin-top: 5px;
+}
+
+.space {
+  padding-left: 5px;
+  padding-right: 5px ;
+}

@@ -228,11 +228,6 @@ export class HoneySlideshow {
       <Host>
         <header>
           <slot name={"title"}>Platzhalter für den Titel der Präsentation</slot>
-          <div id="taglist" class={"tag-container"}>
-            {this.tags.map((tag) =>
-              <span class={"tag-content"}>{tag}</span>
-            )}
-          </div>
         </header>
         <hr class={"hr-oben"}/>
         <div id="slide-control" class="flex-container">
@@ -295,8 +290,17 @@ export class HoneySlideshow {
         </div>
         <hr class={"hr-unten"}/>
         <main>
-          <div>Quellen: <a href={this.getCurrentSlideURLExternalForm()} target={"_blank"} class={"quelle"}>{"Folie"}</a>
+          <div class="status">
+          <span>Quellen: <a href={this.getCurrentSlideURLExternalForm()} target={"_blank"} class={"quelle"}>{"Folie"}</a>
             <a href={this.getCurrentAudiofileURLExternalForm()} target={"_blank"} class={"quelle"}>{"Audio"}</a>
+          </span>
+          <span class="space"/>
+          <span id="taglist" class={"tag-container"}>
+            Schlagwörter:
+            {this.tags.map((tag) =>
+              <span class={"tag-content"}>{tag}</span>
+            )}
+          </span>
           </div>
           <slot name={"slide-area"}/>
         </main>

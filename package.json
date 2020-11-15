@@ -1,9 +1,9 @@
 {
   "name": "@huluvu424242/honey-slideshow",
   "version": "0.0.6",
-  "description": "Text to Speech component wich is reading texts from DOM elements.",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "description": "Slide show component with audio support",
+  "main": "dist/index.cjs.js",
+  "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",

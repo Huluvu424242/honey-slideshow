@@ -116,49 +116,56 @@ export class HoneySlideshow {
   async moveToSlide(slideNr: number) {
     if (this.isValidSlide(slideNr)) {
       this.slide = slideNr;
-      // await this.playButton['pauseSpeaker']();
       await this.loadSlide();
     } else {
       alert("Invalid Slide -> no change");
     }
   }
 
-  handleStart(event: UIEvent) {
+  async handleStart(event: UIEvent) {
     event.target
-    this.moveToSlide(0);
+    await this.playButton['cancelSpeaker']();
+    await this.moveToSlide(0);
   }
 
-  handleFastRewind(event: UIEvent) {
+  async handleFastRewind(event: UIEvent) {
     event.target;
-    this.moveToSlide(this.slide - 10);
+    await this.playButton['cancelSpeaker']();
+    await this.moveToSlide(this.slide - 10);
   }
 
-  handleRewind(event: UIEvent) {
+  async handleRewind(event: UIEvent) {
     event.target;
-    this.moveToSlide(this.slide - 1);
+    await this.playButton['cancelSpeaker']();
+    await this.moveToSlide(this.slide - 1);
   }
 
-  handlePause(event: UIEvent) {
+  async handlePause(event: UIEvent) {
     event.target
   }
 
-  handleStop(event: UIEvent) {
+  async handleStop(event: UIEvent) {
     event.target
+    await this.playButton['cancelSpeaker']();
   }
 
-  handleForeward(event: UIEvent) {
+  async handleForeward(event: UIEvent) {
     event.target;
-    this.moveToSlide(this.slide + 1);
+    await this.playButton['cancelSpeaker']();
+    await this.moveToSlide(this.slide + 1);
+    // await this.playButton['toggleSpeaker']();
   }
 
-  handleFastForeward(event: Event) {
+  async handleFastForeward(event: Event) {
     event.target;
-    this.moveToSlide(this.slide + 10);
+    await this.playButton['cancelSpeaker']();
+    await this.moveToSlide(this.slide + 10);
   }
 
-  handleEnd(event: UIEvent) {
+  async handleEnd(event: UIEvent) {
     event.target;
-    this.moveToSlide(this.slides.length - 1);
+    await this.playButton['cancelSpeaker']();
+    await this.moveToSlide(this.slides.length - 1);
   }
 
   @Listen('honeySpeakerStarted', {target: 'body', capture: true})

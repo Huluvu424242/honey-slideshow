@@ -53,8 +53,11 @@ export class HoneySlideshow {
 
   async componentDidLoad(){
     const speakerOptions: SpeakerOptions = {
+      disabledTitleText: "Zu dieser Folie existiert kein Audio",
       pressedTitleText: "Vortrag läuft gerade.",
-      unpressedTitleText: "Vortrag starten"
+      unpressedTitleText: "Vortrag starten",
+      pressedAltText: "Symbol eines tönenden Lautsprechers",
+      unpressedAltText: "Symbol eines stummen Lautsprechers"
     };
     await this.playButton['updateOptions'](speakerOptions);
   }

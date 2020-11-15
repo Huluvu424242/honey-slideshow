@@ -4,7 +4,7 @@ import {
   IMG_FASTFOREWARD,
   IMG_FASTREWIND,
   IMG_FOREWARD,
-  IMG_PAUSE,
+  IMG_PAUSE, IMG_PLAY,
   IMG_REWIND,
   IMG_START,
   IMG_STOP
@@ -157,6 +157,12 @@ export class HoneySlideshow {
 
   async handlePause(event: UIEvent) {
     event.target
+    await this.playButton['pauseSpeaker']();
+  }
+
+  async handleResume(event: UIEvent) {
+    event.target
+    await this.playButton['resumeSpeaker']();
   }
 
   async handleStop(event: UIEvent) {
@@ -253,18 +259,12 @@ export class HoneySlideshow {
                          texturl={this.getCurrentAudiofileURLExternalForm()}
                          ref={el => this.playButton = el}
                          pure/>
-          <button onClick={this.handlePause.bind(this)}
-                  disabled={!this.isPlayingMode || this.isPausierend}
+          <button onClick={this.isPausierend?this.handleResume.bind(this):this.handlePause.bind(this)}
+                  disabled={!this.isPlayingMode}
                   id="pause"
                   class="flex-content"
                   title="Sprachausgabe pausieren"
-                  innerHTML={IMG_PAUSE}/>
-          <button onClick={this.handleStop.bind(this)}
-                  disabled={!this.isPlayingMode}
-                  id="stop"
-                  class="flex-content"
-                  title="Sprachausgabe beenden"
-                  innerHTML={IMG_STOP}/>
+                  innerHTML={this.isPausierend? IMG_PLAY : IMG_PAUSE}/>
           <button onClick={this.handleForeward.bind(this)}
                   disabled={(this.slide + 1) > (this.slides.length - 1)}
                   id="forward"

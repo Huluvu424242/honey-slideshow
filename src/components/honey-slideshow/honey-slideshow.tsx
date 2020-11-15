@@ -53,6 +53,8 @@ export class HoneySlideshow {
 
   async componentDidLoad(){
     const speakerOptions: SpeakerOptions = {
+      disabledHostClass: "flex-content-disabled",
+      enabledHostClass: "flex-content",
       disabledTitleText: "Zu dieser Folie existiert kein Audio",
       pressedTitleText: "Vortrag läuft gerade.",
       unpressedTitleText: "Vortrag starten",
@@ -255,7 +257,7 @@ export class HoneySlideshow {
           <honey-speaker id="playbutton"
                          texturl={this.getCurrentAudiofileURLExternalForm()}
                          ref={el => this.playButton = el}
-                         class="flex-content" pure/>
+                         pure/>
           <button onClick={this.handlePause.bind(this)}
                   disabled={!this.isPlayingMode || this.isPausierend}
                   id="pause"

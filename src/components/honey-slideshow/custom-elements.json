@@ -1,5 +1,5 @@
 {
-  "timestamp": "2020-11-08T21:26:19",
+  "timestamp": "2020-11-15T14:36:48",
   "compiler": {
     "name": "@stencil/core",
     "version": "1.16.0-4",
@@ -34,7 +34,38 @@
       ],
       "methods": [],
       "events": [],
-      "listeners": [],
+      "listeners": [
+        {
+          "event": "honeySpeakerStarted",
+          "target": "body",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "honeySpeakerPaused",
+          "target": "body",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "honeySpeakerResumed",
+          "target": "body",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "honeySpeakerFinished",
+          "target": "body",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "honeySpeakerFailed",
+          "target": "body",
+          "capture": true,
+          "passive": false
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],

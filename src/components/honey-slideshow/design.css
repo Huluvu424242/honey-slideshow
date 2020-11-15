@@ -20,8 +20,15 @@ svg {
   box-shadow: 1px 1px blue;
 }
 
-
 .flex-content:disabled {
+  background-color: lightgray;
+}
+
+.flex-content-disabled {
+  flex: 1;
+  border: 1px solid blue;
+  border-radius: 6px;
+  box-shadow: 1px 1px blue;
   background-color: lightgray;
 }
 

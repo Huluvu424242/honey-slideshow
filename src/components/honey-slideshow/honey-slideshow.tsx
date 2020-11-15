@@ -13,6 +13,7 @@ import {Fileloader, ResponseInfo} from "../../shared/fileloader";
 import marked from "marked";
 import {IonicSafeString} from "@ionic/core";
 import {Logger} from "../../shared/logger";
+import {SpeakerOptions} from "@huluvu424242/honey-speaker/dist/types/components/honey-speaker/speaker-options";
 
 
 @Component({
@@ -36,6 +37,29 @@ export class HoneySlideshow {
   @State() isPlayingMode: boolean;
   @State() isPausierend: boolean;
 
+  async componentWillLoad() {
+    this.isPlayingMode = false;
+    this.isPausierend = false;
+    this.slide = 0;
+    this.slides = [];
+    this.tags = [];
+    await this.loadMetadata();
+    marked.setOptions({
+      baseUrl: this.baseurl,
+      headerIds: true,
+      headerPrefix: "heading"
+    });
+  }
+
+  async componentDidLoad(){
+    const speakerOptions: SpeakerOptions = {
+      pressedTitleText: "Vortrag läuft gerade.",
+      unpressedTitleText: "Vortrag starten"
+    };
+    await this.playButton['updateOptions'](speakerOptions);
+  }
+
+
   getFileURLexternalForm(fileName: string): string {
     if (this.baseurl.endsWith("/")) {
       return this.baseurl + fileName;
@@ -56,20 +80,6 @@ export class HoneySlideshow {
 
   getCurrentAudiofileURLExternalForm(): string {
     return this.getCurrentURLExternalForm() + ".txt";
-  }
-
-  async componentWillLoad() {
-    this.isPlayingMode = false;
-    this.isPausierend = false;
-    this.slide = 0;
-    this.slides = [];
-    this.tags = [];
-    await this.loadMetadata();
-    marked.setOptions({
-      baseUrl: this.baseurl,
-      headerIds: true,
-      headerPrefix: "heading"
-    });
   }
 
   printPageNum(): string {
@@ -242,7 +252,6 @@ export class HoneySlideshow {
           <honey-speaker id="playbutton"
                          texturl={this.getCurrentAudiofileURLExternalForm()}
                          ref={el => this.playButton = el}
-                         title={this.isPlayingMode && this.isPausierend ? "Sprachausgabe fortsetzen" : "Vortrag beginnen lassen"}
                          class="flex-content" pure/>
           <button onClick={this.handlePause.bind(this)}
                   disabled={!this.isPlayingMode || this.isPausierend}

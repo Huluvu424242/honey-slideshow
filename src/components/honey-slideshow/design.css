@@ -20,6 +20,11 @@ svg {
   box-shadow: 1px 1px blue;
 }
 
+
+.flex-content:disabled {
+  background-color: lightgray;
+}
+
 /*.flex-content:hover {*/
 /*  flex:3;*/
 /*  border: 1px solid darkblue;*/
@@ -60,6 +65,3 @@ svg {
   margin: 3px 0px 0px 1px;
 }
 
-button:disabled {
-  background-color: lightgray;
-}

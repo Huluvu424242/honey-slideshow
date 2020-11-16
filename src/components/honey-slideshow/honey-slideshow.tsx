@@ -6,8 +6,7 @@ import {
   IMG_FOREWARD,
   IMG_PAUSE, IMG_PLAY,
   IMG_REWIND,
-  IMG_START,
-  IMG_STOP
+  IMG_START
 } from "./icon-constants";
 import {Fileloader, ResponseInfo} from "../../shared/fileloader";
 import marked from "marked";
@@ -26,7 +25,7 @@ export class HoneySlideshow {
 
   @Element() hostElement: HTMLElement;
 
-  playButton: HTMLButtonElement;
+  playButton: HTMLHoneySpeakerElement;
 
   @Prop() baseurl: string;
 
@@ -139,53 +138,55 @@ export class HoneySlideshow {
 
   async handleStart(event: UIEvent) {
     event.target
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker();
     await this.moveToSlide(0);
   }
 
   async handleFastRewind(event: UIEvent) {
     event.target;
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker;
     await this.moveToSlide(this.slide - 10);
   }
 
   async handleRewind(event: UIEvent) {
     event.target;
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker();
     await this.moveToSlide(this.slide - 1);
   }
 
   async handlePause(event: UIEvent) {
     event.target
-    await this.playButton['pauseSpeaker']();
+    this.isPausierend=true;
+    await this.playButton.pauseSpeaker();
   }
 
   async handleResume(event: UIEvent) {
     event.target
-    await this.playButton['resumeSpeaker']();
+    this.isPausierend=false;
+    await this.playButton.resumeSpeaker();
   }
 
   async handleStop(event: UIEvent) {
     event.target
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker();
   }
 
   async handleForeward(event: UIEvent) {
     event.target;
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker();
     await this.moveToSlide(this.slide + 1);
     // await this.playButton['toggleSpeaker']();
   }
 
   async handleFastForeward(event: Event) {
     event.target;
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker();
     await this.moveToSlide(this.slide + 10);
   }
 
   async handleEnd(event: UIEvent) {
     event.target;
-    await this.playButton['cancelSpeaker']();
+    await this.playButton.cancelSpeaker();
     await this.moveToSlide(this.slides.length - 1);
   }
 

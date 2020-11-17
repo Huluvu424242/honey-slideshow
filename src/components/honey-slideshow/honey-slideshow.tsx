@@ -55,8 +55,8 @@ export class HoneySlideshow {
       disabledHostClass: "flex-content-disabled",
       enabledHostClass: "flex-content",
       disabledTitleText: "Zu dieser Folie existiert kein Audio",
-      pressedTitleText: "Vortrag läuft gerade.",
-      unpressedTitleText: "Vortrag starten",
+      pressedTitleText: "Vortrag abbrechen",
+      unpressedTitleText: "Vortrag ab Anfang starten",
       pressedAltText: "Symbol eines tönenden Lautsprechers",
       unpressedAltText: "Symbol eines stummen Lautsprechers"
     };
@@ -175,7 +175,7 @@ export class HoneySlideshow {
     event.target;
     await this.playButton.cancelSpeaker();
     await this.moveToSlide(this.slide + 1);
-    // await this.playButton['toggleSpeaker']();
+    await this.playButton.startSpeaker();
   }
 
   async handleFastForeward(event: Event) {
@@ -259,12 +259,12 @@ export class HoneySlideshow {
           <honey-speaker id="playbutton"
                          texturl={this.getCurrentAudiofileURLExternalForm()}
                          ref={el => this.playButton = el}
-                         pure/>
+                         pure={!this.isPausierend}/>
           <button onClick={this.isPausierend?this.handleResume.bind(this):this.handlePause.bind(this)}
                   disabled={!this.isPlayingMode}
                   id="pause"
                   class="flex-content"
-                  title="Sprachausgabe pausieren"
+                  title={this.isPausierend? "Vortrag fortsetzen":"Vortrag  pausieren"}
                   innerHTML={this.isPausierend? IMG_PLAY : IMG_PAUSE}/>
           <button onClick={this.handleForeward.bind(this)}
                   disabled={(this.slide + 1) > (this.slides.length - 1)}

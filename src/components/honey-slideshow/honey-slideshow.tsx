@@ -60,7 +60,7 @@ export class HoneySlideshow {
       pressedAltText: "Symbol eines tönenden Lautsprechers",
       unpressedAltText: "Symbol eines stummen Lautsprechers"
     };
-    await this.playButton['updateOptions'](speakerOptions);
+    await this.playButton.updateOptions(speakerOptions);
   }
 
 

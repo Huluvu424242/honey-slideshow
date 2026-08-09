@@ -55,8 +55,8 @@
     "@stencil/core": "1.16.0-4",
     "@types/jest": "26.0.3",
     "@types/puppeteer": "3.0.1",
-    "jest": "26.1.0",
-    "jest-cli": "26.1.0",
+    "jest": "30.4.2",
+    "jest-cli": "30.4.2",
     "puppeteer": "25.5.0",
     "axe-puppeteer": "1.1.0"
   }
